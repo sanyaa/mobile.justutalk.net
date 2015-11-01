@@ -1,0 +1,309 @@
+<div data-role="view" id="grid-view" data-title="grid" style="margin: 0 auto">
+    <div id="listView" data-role="listview" class="k-widget k-listview" role="listbox" style="margin: 0 auto">
+        <div class="grid-widget k-widget" role="option" aria-selected="false">
+            <dl class="grid-widget-item">
+
+                <dt>Product Name <i class="km-icon km-cart jt-icon"></i></dt>
+                <dd>Chai</dd>
+            </dl>
+        </div>
+        <div class="grid-widget k-widget no-border-right" role="option" aria-selected="false">
+            <dl class="grid-widget-item">
+                <dt>Product Name <i class="km-icon km-cart jt-icon"></i></dt>
+                <dd>Chef Anton's </dd>
+            </dl>
+        </div>
+
+
+        <!--second row-->
+
+        <div class="grid-widget k-widget no-border-bottom" role="option" aria-selected="false">
+            <dl class="grid-widget-item">
+                <dt>Product Name <i class="km-icon km-cart jt-icon"></i></dt>
+                <dd>Chai</dd>
+
+            </dl>
+        </div>
+        <div class="grid-widget k-widget no-border-right no-border-bottom" role="option" aria-selected="false">
+            <dl class="grid-widget-item">
+                <dt>Product Name <i class="km-icon km-cart jt-icon"></i></dt>
+                <dd>Chef Anton's </dd>
+
+            </dl>
+        </div>
+    </div>
+
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+        <tr>
+            <td><i class="km-icon km-cart jt-icon"></i></td>
+            <td><i class="km-icon km-cart jt-icon"></i></td>
+            <td><i class="km-icon km-cart jt-icon"></i></td>
+            <td><i class="km-icon km-cart jt-icon"></i></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>fgfg</td>
+            <td>fgfgf</td>
+            <td>gfgf</td>
+            <td>fgfg</td>
+        </tr>
+    </table>
+
+    <div class="k-grid k-widget">
+        <table id="grid">
+            <thead class="k-grid-header">
+                <tr>
+                    <th data-field="firstName" class="k-header">First Name</th>
+                    <th data-field="lastName" class="k-header">Last Name</th>
+                    <th data-field="email" class="k-header">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nancy</td>
+                    <td>Davolio</td>
+                    <td>email@domain.com</td>
+                </tr>
+                <tr>
+                    <td>Nancy</td>
+                    <td>Davolio</td>
+                    <td>email@domain.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<style>
+
+    element.style {
+        border: 1px solid #eee;
+        margin: 10px 0;
+    }
+    
+    .grid-widget{
+        
+    }
+
+    .grid-widget-item{
+        
+    }
+    .grid-widget-item .jt-icon{
+        text-align: right;
+        float: right;
+        font-size: 1.5em;
+    }
+    
+    
+    .no-border-right {
+         border-right: 0;
+    }
+    .no-border-bottom {
+        border-bottom: 0;
+    }
+    .no-border-left {
+        border-left: 0;
+    }
+    .no-border-top {
+        border-top: 0;
+    }
+
+    .grid-widget
+    {
+        float: left;
+        width: 24%;
+        height: 80px;
+        box-sizing: border-box;
+        border-top: 0;
+        border-left: 0;
+        position: relative;
+    }
+    .grid-widget:nth-child(even) {
+        border-left-width: 0;
+    }
+    .grid-widget dl
+    {
+        margin: 10px 10px 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .grid-widget dt, dd
+    {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        line-height: 24px;
+        font-size: 18px;
+    }
+    .grid-widget dt
+    {
+        font-size: 11px;
+        height: 16px;
+        line-height: 16px;
+        text-transform: uppercase;
+        opacity: 0.5;
+    }
+
+    .grid-widget dd
+    {
+        height: 46px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+    }
+
+    .grid-widget dd .k-widget,
+    .grid-widget dd .k-textbox {
+        font-size: 14px;
+    }
+    .k-listview
+    {
+        border-width: 1px 0 0;
+        padding: 0;
+        overflow: hidden;
+        min-height: 198px;
+    }
+    .edit-buttons
+    {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: right;
+        padding: 5px;
+        background-color: rgba(0,0,0,0.1);
+    }
+    .k-pager-wrap
+    {
+        border-top: 0;
+    }
+    span.k-invalid-msg
+    {
+        position: absolute;
+        margin-left: 6px;
+    }
+
+    .k-add-button {
+        margin-bottom: 2em;
+    }
+
+   /* @media only screen and (max-width : 620px) {
+
+        .grid-widget
+        {
+            width: 100%;
+        }
+        .grid-widget:nth-child(even) {
+            border-left-width: 1px;
+        }
+    }*/
+</style>
+
+<style type="text/css">
+
+    .k-grid > table > tbody > tr > td:first-child { width:20% }
+    .k-grid > table > tbody > tr > td:first-child + td { width:30% }
+    .k-grid > table > tbody > tr > td:first-child + td + td { width:50% }
+
+
+    .k-header,
+    .k-grid-header,
+    .k-toolbar,
+    .k-grouping-header,
+    .k-tooltip, .k-pager-wrap,
+    .k-tabstrip-items .k-item,
+    .k-link.k-state-hover,
+    .k-autocomplete,
+    .k-dropdown-wrap, .k-picker-wrap,
+    .k-numeric-wrap,
+    .k-autocomplete.k-state-hover,
+    .k-dropdown-wrap.k-state-hover,
+    .k-picker-wrap.k-state-hover,
+    .k-numeric-wrap.k-state-hover, .k-draghandle {
+        background-repeat: repeat-x;
+        background-position: 0 center;
+    }
+
+    .k-header, .k-grid-header,
+    .k-toolbar, .k-grouping-header,
+    .k-tooltip, .k-pager-wrap,
+    .k-button, .k-draghandle {
+        background-color: #6F9F00;
+    }
+
+    .k-grid-header .k-header {
+        overflow: hidden;
+        border-style: solid;
+        border-width: 0 0 1px 1px;
+        padding: .5em .6em .4em .6em;
+        font-weight: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #fff;
+    }
+    .k-grid-header .k-header {
+        text-align: left;
+    }
+    .k-header {
+        color: #2e2e2e;
+    }
+
+    .k-grid table {
+        width: 100%;
+        border-collapse: separate;
+        empty-cells: show;
+        border-width: 0;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .k-grid {
+        position: relative;
+        zoom: 1;
+    }
+    .k-widget {
+        line-height: normal;
+    }
+
+
+
+    .customer-photo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-left: 5px;
+    }
+
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>

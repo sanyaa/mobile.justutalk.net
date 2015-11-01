@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.2.805/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.2.805/styles/kendo.mobile.all.min.css">
+    <!--<link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />-->
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/Style.css" rel="stylesheet" />
+    <!--<link href="styles/logoimages.css" rel="stylesheet" />-->
+    <link href="styles/logoimages.ios.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+    <script src="cordova.js"></script>
+
+
+    <!--<script src="kendo/js/kendo.mobile.min.js"></script>-->
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+
+
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"> </script>
+    <script src="angular/angular.js"> </script>
+    <script src="http://kendo.cdn.telerik.com/2015.2.805/js/kendo.all.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+
+    <script src="angular/angular-drupal.js"> </script>
+    
+    
+    <!--<script src="angular/app.js"> </script>-->
+
+    
+    
+    
+    <script>        
+        
+        //This global varibale JustutalkMobile will act as a name space for
+        //our application. Objects from other modules will be
+        //available as properties of this object.
+        //This way we lower the possibility of naming collisions
+        //when using our code in conjunction with other JavaScript libraries        
+        
+        //var JustutalkMobile = JustutalkMobile || {};
+        //console.log(app.loginService.viewModel.isLoggedIn);
+        //var app = app || {};
+        //app.setText('testing 123');
+        
+        // The angular-drupal configuration settings for my simple app.
+        angular.module('angular-drupal')
+            .config(function($provide) {
+
+                $provide.value('drupalSettings', {
+                    sitePath: 'http://excitenet.co.uk',
+                    endpoint: 'users-json'
+                });
+
+            });
+        
+        var injector = angular.injector(['ng', 'angular-drupal']);
+        var $drupal = injector.get('drupal');
+        
+
+    </script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/location.js"></script>
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/rates.js"></script>
+    <script src="scripts/crud.js"></script>
+    <script src="Chart.js"></script>
+
+
+
+    <script>
+
+        var app = app;
+
+
+
+
+    </script>
+   
+</head>
+<body>
+     
+    <!--Layout-->
+    <div data-role="layout" data-id="main-layout">
+        <!--Header-->
+        <div data-role="header">
+            <div data-role="navbar">
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <!--
+                <a data-role="button" href="#accountDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <a data-role="button" data-align="left" data-icon="globe" href="#views/tmp/crud.html">crud</a>
+                -->
+
+                
+                <span data-role="view-title"></span>
+
+                <a data-role="button" class="km-icon km-more" data-align="right" href="#views/tmp/grid.html"></a>
+                <a data-role="button" class="km-icon km-more-v" data-align="right" href="#views/my-account.html"></a>
+                <a data-role="button" class="km-icon km-contacts" data-align="right" href="#user-popover" data-rel="popover"></a>
+            </div>
+
+
+        </div>
+		
+        <!-- application views will be rendered here -->
+
+
+        <!-- user popover  -->
+        <div id="user-popover" data-role="popover" data-popup='{ "direction": "down" }' data-use-native-scrolling="true">
+            <div data-role="view" data-model="app.loginService.viewModel">
+                <ul data-role="listview" data-type="group" >
+
+                    <li>
+                        User
+                        <ul>                            
+                            <li data-bind="invisible: isLoggedIn">
+                                <a href="" data-icon="sign-in">
+                                    <span data-role="button" data-click="login">login</span>                                    
+                                </a>                                
+                            </li>
+                            <li data-bind="visible: isLoggedIn">
+                                <a href="" data-icon="sign-out">                                    
+                                    <span data-role="button" data-click="logout">logout</span>                                    
+                                </a>                                
+                            </li>
+                            <li data-bind="invisible: isLoggedIn">
+                                <a href="" data-icon="">
+                                    <i class="fa fa-user-plus"></i>
+                                    <span data-role="button" data-click="register">Register</span>                                    
+                                </a>                                
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!--Footer-->
+        <div data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#views/home.html" data-icon="home">Home</a>
+                <a href="#views/tmp/crud.html" data-icon="globe">crud </a>
+                <a href="#views/login.html" data-icon="contacts" data-bind="invisible: isLoggedIn">Login</a>                
+                <a href="#views/contacts.html" data-icon="envelope-close">Contacts</a>
+                <a href="#views/account.html" data-icon="globe">Account</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- application drawer and contents -->
+    <div data-role="drawer" id="appDrawer" style="width: 250px" data-title="Navigation">
+       <!-- <div data-role="header" style="z-index: 100;">
+          <div data-role="navbar">
+            <span data-role="view-title"></span>
+          </div>
+        </div>-->
+
+        <ul data-role="listview">
+            <li><a href="views/home.html" data-icon="home" data-transition="none">Home</a></li>
+            <li><a href="views/ways2call.html" data-icon="phone" data-transition="none">Ways2Call</a></li>
+            <li><a href="views/rates.html" data-icon="downloads" data-transition="none">Rates</a></li>
+            <li><a href="views/services.html" data-icon="settings" data-transition="none">Services</a></li>
+            <li><a href="views/apps.html" data-icon="downloads" data-transition="none">Our Apps</a></li>
+            <li><a href="views/offers.html" data-icon="cart" data-transition="none">Offers</a></li>
+            <li><a href="views/about.html" data-icon="about" data-transition="none">About</a></li>
+            <!--<li><a href="views/contacts.html" data-icon="envelope-open" data-transition="none">Contacts</a></li>-->
+            <li><a href="views/make-money.html" data-icon="share" data-transition="none">Make Money</a></li>
+
+        </ul>
+        <ul data-role="listview" data-style="inset" data-type="group">
+            <!--<li>
+                Manage Accoint
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/voizage-account">Voizage Account</a></li>
+                    <li><a href="/our-apps">Mobile Applications</a></li>
+                    <li><a href="/our-apps">PC2Phone</a></li>
+                    <li><a href="/assigned-rates-plan">Current Rate Plan</a></li>
+                    <li><a href="/web-sms">Send SMS</a></li>
+                    <li><a href="/user-dashboard">User Dashboard</a></li>
+                    <li><a href="/user">My Profile</a></li>
+                    <li><a href="/manage-payment">Top-up your Account</a></li>
+                    <li><a href="/user/call-history">Call History</a></li>
+                    <li><a href="/recharge-history">Top-up History</a></li>
+                    <li><a href="/ani">Authorised Numbers</a></li>
+                    <li><a href="/manage-pin">Pc &amp; Mobile Dialer Password</a></li>
+                    <li><a href="/hot-numbers">Hot Number Settings</a></li>
+                    <li><a href="/speed-dial">Speed Dial Settings</a></li>
+                    <li><a href="/fnf-numbers">Friend &amp; Family Settings</a></li>
+                    <li><a href="/user-referrals">User Referral</a></li>
+                </ul>
+            </li>-->
+            <li>Sources
+                <ul>
+                    <!--<li><a href="#views/tmp/grid.html" data-icon="globe" data-transition="none">grid</a></li>-->
+                    <li><a href="views/settings.html" data-icon="settings" data-transition="none">Settings</a></li>
+                    <li><a href="views/gallery.html" data-icon="camera" data-transition="none">Gallery</a></li>
+                    <li><a href="views/menu.html" data-icon="camera" data-transition="none">Menu</a></li>
+
+                    <li><a href="#views/tmp/utils.html" data-icon="camera" data-transition="none">Utils</a></li>
+                    <li><a href="#views/tmp/pull-to-refresh.html" data-icon="camera" data-transition="none">pull-to-refresh</a></li>
+                    <li><a href="#views/tmp/custom-services.html" data-icon="camera" data-transition="none">custom-services</a></li>
+                    <li><a href="#views/tmp/splitview.html?ProductID=5" data-icon="camera" data-transition="none">splitview</a></li>
+                    <li><a href="#views/tmp/filter-listview.html" data-icon="camera" data-transition="none">filter listview</a></li>
+                    <li><a href="#views/tmp/table.html" data-icon="camera" data-transition="none">Table</a></li>
+                    <li><a href="#views/tmp/chart.html" data-icon="camera" data-transition="none">Chart</a></li>
+                    <li><a href="#views/tmp/listview.html" data-icon="camera" data-transition="none">ListView</a></li>
+                    <li><a href="#views/tmp/listview1.html" data-icon="camera" data-transition="none">ListView 1</a></li>
+                    <li><a href="#views/tmp/popover.html" data-icon="globe" data-transition="none">popover</a></li>
+                    <li><a href="#views/tmp/modal.html" data-icon="globe" data-transition="none">modal</a></li>
+                    <li><a href="#views/tmp/pane.html" data-icon="globe" data-transition="none">pane</a></li>
+                    <li><a href="#views/tmp/flexboxes.html" data-icon="globe" data-transition="none">flexboxes</a></li>
+                    <li><a href="#views/tmp/actionsheet.html" data-icon="globe" data-transition="none">ActionSheet</a></li>
+                    <li><a href="#views/tmp/buttongroup.html" data-icon="globe" data-transition="none">buttongroup</a></li>
+                    <li><a href="#views/tmp/buttongroup-1.html" data-icon="globe" data-transition="none">buttongroup-1</a></li>
+                    <li><a href="#views/tmp/form.html" data-icon="globe" data-transition="none">form</a></li>
+                    <li><a href="#views/tmp/collapsible.html" data-icon="globe" data-transition="none">collapsible</a></li>
+                    <li><a href="#views/tmp/node.html" data-icon="globe" data-transition="none">node</a></li>
+                    <li data-icon="inbox"><a href="#views/user.html" data-transition="none">User</a></li>
+                    <li data-icon="star"><a href="#views/UserAccount.html" data-transition="none">User Account</a></li>
+                </ul>
+            </li>
+        </ul>
+      </div>
+
+
+
+    <!-- application drawer and contents -->
+    <div data-role="drawer" id="accountDrawer" style="width: 250px" data-title="Navigation">
+        <div data-role="header" style="z-index: 100;">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </div>
+
+
+        <div class="profile-header">
+            
+            <div class="img-wrapper">
+                <img src="images/user4.png" alt=""/>
+                
+            </div>
+            <p class="profile-title">Title</p>
+            <p class="profile-sub-title">sub title</p>
+            
+        </div>
+
+        <ul  data-role="listview" data-style="inset" class="bg-gray">
+            <!--<li data-icon="home"><a href="/voizage-account">Voizage Account</a></li>
+            <li data-icon="home"><a href="/our-apps">Mobile Applications</a></li>
+            <li data-icon="home"><a href="/our-apps">PC2Phone</a></li>
+            <li data-icon="home"><a href="/assigned-rates-plan">Current Rate Plan</a></li>-->
+            <li data-icon=""><a href="#views/user/sms.html"><span class="km-icon km-sms-light"></span>Send SMS</a></li>
+            <!--<li data-icon="home"><a href="/user-dashboard">User Dashboard</a></li>
+            <li data-icon="home"><a href="/user">My Profile</a></li>
+            <li data-icon="home"><a href="/manage-pin">Pc &amp; Mobile Dialer Password</a></li>-->
+            <li data-icon="home"><a href="#views/user/topup.html"><span class="km-icon km-cart"></span>Top-up account</a></li>
+            <li data-icon="home"><a href="#views/user/call-history.html"><span class="km-icon km-recents"></span>Call History</a></li>
+            <li data-icon="home"><a href="#views/user/topup-history.html"><span class="km-icon km-calender"></span>Top-up History</a></li>
+            <li data-icon="home"><a href="#views/user/ani.html"><span class="km-icon km-home"></span>Authorised Numbers</a></li>
+
+            <li data-icon="home"><a href="#views/user/hot-number.html"><span class="km-icon km-globe"></span>Hot Number Settings</a></li>
+            <li data-icon="home"><a href="#views/user/speed-dial.html"><span class="km-icon km-speed"></span>Speed Dial Settings</a></li>
+            <li data-icon="home"><a href="#views/user/fnf.html"><span class="km-icon km-heart-light"></span>Friend &amp; Family Settings</a></li>
+            <li data-icon="home"><a href="#views/user/referral.html"><span class="km-icon km-pyramid"></span>User Referral</a></li>
+        </ul>
+
+    </div>
+
+
+    <div data-role="view" data-title="Chart" data-model="APP.models.settings" id="chart">
+        <button>hello</button>
+        <div style="width: 50%">
+            <canvas id="canvas" height="450" width="600"></canvas>
+        </div>
+
+    </div>
+    
+    
+    <style>
+        
+        #user-popover .km-view .km-content .km-button  {
+          border: none;
+          width: 65%;
+          background-color: transparent;
+          font-size: 1em;
+          text-align: left;
+  
+        }
+        
+        #user-popover .km-view .km-content .km-button .km-text{
+            color:#000;
+        }
+        
+    </style>
+
+
+    
+
+
+    <script>
+    
+      document.addEventListener('deviceready', function (window) {
+
+          //$controller('nodeCtrl')
+          //$controllerProvider.register('someCtrl', function ($scope) {});
+
+
+
+          //console.log($controller('nodeCtrl'));
+          /*angular.injector(['ng', 'myDrupalApp']).invoke(function(hello){
+              //alert(hello.title);
+          })*/
+
+          //app.drupal.setText('77777 88888');
+          //console.log(app);
+
+
+            //JustutalkMobile.main.initializeApp();
+
+           /*
+           var app = JustutalkMobile.app;
+            app.getApplication();
+           	app.setText('testing 123');
+            //app.login('admin', 'H4der222');
+
+
+          	// Make controller Ctrl in module Foo
+			app.controller('Ctrl', function($scope) {
+            	$scope.greet=function(){
+                        alert('hello');
+                    }
+
+            });
+
+
+            app.controller('CustomersController', ['$scope', function ($scope) {
+                $scope.greet=function(){
+                    alert('hello');
+                }
+                //Controller code goes here
+            }]);
+            */
+
+
+          //==========================================
+
+
+
+      });
+        
+      function login(){                        
+            app.application.navigate('#views/login.html');            
+      }
+      function logout(){
+            app.loginService.viewModel.onLogout();         
+      }
+      function register(){            
+            app.application.navigate('#views/user/register.html');
+            
+            //----------------------------------
+            //app.application.pane.loader.show();
+            //app.loginService.viewModel.onLogout();
+            //app.application.pane.loader.hide(); 
+      }
+
+    </script>
+   
+</body>
+</html>

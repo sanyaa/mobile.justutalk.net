@@ -1,0 +1,180 @@
+<div data-role="view" data-title="Our Apps" data-model="APP.models.settings" class="" id="apps-view">
+
+    <!--Header-->
+   <!-- <div data-role="header">
+        <div data-role="navbar">
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <span data-role="view-title"></span>
+        </div>
+
+    </div>-->
+    <div class="hero">Our Apps</div>
+
+    <div class="divider-green"></div>
+    <ul id="menu-items" class="additional-icons " data-role="listview" >
+        <div class="round-widget-large-wrapper jt-center">
+            <li class="round-widget-large">
+                <a href="#views/home.html" >
+                    <div class="widget-icon">
+                        <span class="km-icon km-mobile-light"></span>
+                    </div>
+                    <div class="widget-title">Mobile Apps</div>
+                    <div class="widget-text">
+                        By using Mobile apps you can get connected from anywhere in the world. Only needs internet in to yor Mobile sets.
+                    </div>
+                </a>
+            </li>
+            <li class="round-widget-large">
+                <a href="#views/home.html" class="">
+                    <div class="widget-icon">
+                        <span class="km-icon km-windows"></span>
+                    </div>
+                    <div class="widget-title">PC Apps</div>
+                    <div class="widget-text">
+                        By using desktop pc or laptop apps you can get connected from anywhere in the world. Only needs internet in to your device.
+                    </div>
+                </a>
+            </li>
+            <a href="#views/home.html" class="round-widget-large">
+                <div class="widget-icon">
+                    <span class="km-icon km-sms-light"></span>
+                </div>
+                <div class="widget-title">International SMS</div>
+                <div class="widget-text">
+                    We happay to introduce our new Online SMS service. This service wll allow you to send sms at very affordable rates to your friend and family all over the world using your calling balance.
+                </div>
+            </a>
+            <a href="#views/home.html" class="round-widget-large">
+                <div class="widget-icon">
+                    <span class="km-icon km-cart"></span>
+                </div>
+                <div class="widget-title">Mobile Recharge</div>
+                <div class="widget-text">
+                    With justutalk you can send Top Up in just a few minutes to Bangladesh mobile phones. Simply click on the country you wish to send top up to your chosen network.
+                </div>
+            </a>
+        </div>
+
+
+    </ul>
+
+
+</div>
+
+<style>
+    .hero {
+        display: block;
+        margin: 0;
+        padding-left: .5em;
+        height: 110px;
+        line-height: 110px;
+        font-size: 18px;
+        color: rgba(255,255,255,.85);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        background: url(images/header/5.jpg) no-repeat center center;
+        -webkit-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+
+    .round-widget-large-wrapper{
+        display: block;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+
+
+    .round-widget-large .widget-icon {
+        width: 70px;
+        height: 70px;
+        border: 2px solid #bbb;
+        border-radius: 50%;
+        line-height: 70px;
+        /* font-size: 25px; */
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .round-widget-large .widget-title {
+        /*width: 70px;
+        height: 70px;
+        border: 1px solid;
+        border-radius: 50%;
+        line-height: 70px;*/
+        font-size: 1em;
+        color: #F3A912;
+        margin: 5px 0;
+    }
+
+    .round-widget-large .widget-text {
+        font-size: .9em;
+    }
+
+
+
+    a.round-widget-large {
+        width: 48%;
+        /* height: 70px; */
+        /* font-size: 15px; */
+        text-align: center;
+        display: inline-table;
+        overflow: hidden;
+        margin: 2px;
+        text-decoration: none;
+        /* color: #fff; */
+        min-height: 310px;
+        border: 1px solid #ddd;
+        padding: 1em .6em;
+        border-radius: 5px;
+    }
+    li.round-widget-large {
+        width: 48%;
+        /* height: 70px; */
+        /* font-size: 15px; */
+        text-align: center;
+        display: inline-table;
+        overflow: hidden;
+        margin: 2px;
+        text-decoration: none;
+        /* color: #fff; */
+        min-height: 310px;
+        border: 1px solid #ddd;
+        /*padding: 1em .6em;*/
+        border-radius: 5px;
+        background-color: #eee;
+    }
+    li.round-widget-large a {
+        width: 98%;
+        height: 70px;
+        /* font-size: 15px; */
+        /* text-align: center; */
+        /* display: inline-table; */
+        /* overflow: hidden; */
+        /* margin: 5px; */
+        text-decoration: none;
+        /* color: #fff; */
+        /* min-height: 310px; */
+        /* border: 1px solid #ddd; */
+        padding: 1em .6em;
+        /* border-radius: 5px; */
+        /* background-color: #eee; */
+        display: block;
+    }
+
+    #apps-view #menu-items .km-icon {
+        width: initial;
+        height: 1em;
+        font-size: 1em;
+        margin-left: 0;
+        margin-right: 0;
+        vertical-align: baseline;
+        display: inline-block;
+        /* background-size: auto 100%; */
+        color: #999;
+        font-size: 2.5em;
+    }
+
+
+</style>

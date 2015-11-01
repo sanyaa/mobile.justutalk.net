@@ -1,0 +1,285 @@
+.km-ios7 .km-view .km-content .km-button {
+    background-color: rgb(43, 61, 0);
+}
+.km-ios7 .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+
+
+
+.km-ios7 .km-view .km-content .km-listgroupinset .km-group-title .km-text {
+    color: rgb(0, 163, 199);
+}
+.km-ios7 .km-view .km-navbar {
+    background-color: rgb(78, 117, 0);
+}
+.km-ios7 .km-view .km-navbar .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-navbar .km-view-title > * .km-button.km-state-active {
+    background-color: rgb(43, 61, 0);
+}
+.km-ios7 .km-view .km-tabstrip {
+    background-color: rgb(34, 51, 0);
+}
+.km-ios7 .km-view .km-tabstrip .km-button .km-icon {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-tabstrip .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-content .km-listgroupinset .km-group-title {
+    color: rgb(0, 53, 66);
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, rgba(255,255,255,.2)),color-stop(.12, rgba(255,255,255,.35)),color-stop(.4, rgba(255,255,255,.65)),color-stop(.8, rgba(255,255,255,.4)),color-stop(1, rgba(255,255,255,.6)));
+    background-image: -moz-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-image: -ms-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-color: rgb(239, 239, 244);
+}
+.km-ios7 .km-view .km-tabstrip .km-state-active span.km-icon {
+    color: rgb(128, 128, 128);
+}
+.km-ios7 .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(0, 53, 66);
+}
+.km-ios7 .km-view .km-content .km-button {
+    background-color: rgb(43, 61, 0);
+}
+.km-ios7 .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+
+
+.km-ios7 .km-view .km-content .km-listgroupinset .km-group-title .km-text {
+    color: rgb(0, 163, 199);
+}
+.km-ios7 .km-view .km-navbar {
+    background-color: rgb(140, 199, 0);
+}
+.km-ios7 .km-view .km-navbar .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-navbar .km-view-title > * .km-button.km-state-active {
+    background-color: rgb(43, 61, 0);
+}
+.km-ios7 .km-view .km-tabstrip {
+    background-color: rgb(34, 51, 0);
+}
+.km-ios7 .km-view .km-tabstrip .km-button .km-icon {
+    color: rgb(255, 255, 255);
+}
+.km-ios7 .km-view .km-tabstrip .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-content .km-button {
+    background-color: rgb(43, 61, 0);
+}
+.km-ios .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-content .km-listgroupinset .km-group-title .km-text {
+    color: rgb(0, 163, 199);
+}
+.km-ios .km-view .km-navbar .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-navbar .km-view-title > * .km-button.km-state-active {
+    background-color: rgb(43, 61, 0);
+}
+.km-ios .km-view .km-tabstrip .km-button .km-icon {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-tabstrip .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-ios .km-view .km-navbar {
+    background-color: rgb(78, 117, 0);
+}
+.km-ios .km-view .km-content .km-listgroupinset .km-group-title {
+    color: rgb(0, 53, 66);
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, rgba(255,255,255,.2)),color-stop(.12, rgba(255,255,255,.35)),color-stop(.4, rgba(255,255,255,.65)),color-stop(.8, rgba(255,255,255,.4)),color-stop(1, rgba(255,255,255,.6)));
+    background-image: -moz-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-image: -ms-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.km-ios .km-view .km-tabstrip .km-state-active span.km-icon {
+    color: rgb(128, 128, 128);
+}
+.km-ios .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(0, 53, 66);
+}
+.km-android .km-view .km-content .km-button {
+    background-color: rgb(43, 61, 0);
+}
+.km-android .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-android .km-view .km-content .km-listgroupinset .km-group-title .km-text {
+    color: rgb(0, 163, 199);
+}
+.km-android .km-view .km-navbar .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-android .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-android .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-android .km-view .km-navbar .km-view-title > * .km-button.km-state-active {
+    background-color: rgb(43, 61, 0);
+}
+.km-android .km-view .km-tabstrip .km-button .km-icon {
+    color: rgb(255, 255, 255);
+}
+.km-android .km-view .km-tabstrip .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-android .km-view .km-navbar {
+    background-color: rgb(78, 117, 0);
+}
+.km-android .km-view .km-content .km-listgroupinset .km-group-title {
+    color: rgb(0, 53, 66);
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, rgba(255,255,255,.2)),color-stop(.12, rgba(255,255,255,.35)),color-stop(.4, rgba(255,255,255,.65)),color-stop(.8, rgba(255,255,255,.4)),color-stop(1, rgba(255,255,255,.6)));
+    background-image: -moz-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-image: -ms-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.km-android .km-view .km-tabstrip .km-state-active span.km-icon {
+    color: rgb(128, 128, 128);
+}
+.km-android .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(0, 53, 66);
+}
+.km-blackberry .km-view .km-content .km-button {
+    background-color: rgb(43, 61, 0);
+}
+.km-blackberry .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-blackberry .km-view .km-content .km-listgroupinset .km-group-title .km-text {
+    color: rgb(0, 163, 199);
+}
+.km-blackberry .km-view .km-navbar .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-blackberry .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-blackberry .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-blackberry .km-view .km-navbar .km-view-title > * .km-button.km-state-active {
+    background-color: rgb(43, 61, 0);
+}
+.km-blackberry .km-view .km-tabstrip .km-button .km-icon {
+    color: rgb(255, 255, 255);
+}
+.km-blackberry .km-view .km-tabstrip .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-blackberry .km-view .km-navbar {
+    background-color: rgb(78, 117, 0);
+}
+.km-blackberry .km-view .km-content .km-listgroupinset .km-group-title {
+    color: rgb(0, 53, 66);
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, rgba(255,255,255,.2)),color-stop(.12, rgba(255,255,255,.35)),color-stop(.4, rgba(255,255,255,.65)),color-stop(.8, rgba(255,255,255,.4)),color-stop(1, rgba(255,255,255,.6)));
+    background-image: -moz-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-image: -ms-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.km-blackberry .km-view .km-tabstrip .km-state-active span.km-icon {
+    color: rgb(128, 128, 128);
+}
+.km-blackberry .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(0, 53, 66);
+}
+.km-wp .km-view .km-content .km-button {
+    background-color: rgb(43, 61, 0);
+}
+.km-wp .km-view .km-content .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-wp .km-view .km-content .km-listgroupinset .km-group-title .km-text {
+    color: rgb(0, 163, 199);
+}
+.km-wp .km-view .km-navbar .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-wp .km-view .km-navbar .km-button.km-state-active .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-wp .km-view .km-navbar .km-view-title > * {
+    color: rgb(255, 255, 255);
+}
+.km-wp .km-view .km-navbar .km-view-title > * .km-button.km-state-active {
+    background-color: rgb(43, 61, 0);
+}
+.km-wp .km-view .km-tabstrip .km-button .km-icon {
+    color: rgb(255, 255, 255);
+}
+.km-wp .km-view .km-tabstrip .km-button .km-text {
+    color: rgb(255, 255, 255);
+}
+.km-wp .km-view .km-navbar {
+    background-color: rgb(78, 117, 0);
+}
+.km-wp .km-view .km-content .km-listgroupinset .km-group-title {
+    color: rgb(0, 53, 66);
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, rgba(255,255,255,.2)),color-stop(.12, rgba(255,255,255,.35)),color-stop(.4, rgba(255,255,255,.65)),color-stop(.8, rgba(255,255,255,.4)),color-stop(1, rgba(255,255,255,.6)));
+    background-image: -moz-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-image: -ms-linear-gradient(50% 0,50% 100%,rgba(255,255,255,.2),rgba(255,255,255,.35) 12%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.4) 80%,rgba(255,255,255,.6));
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-color: rgb(181, 213, 255);
+}
+.km-wp .km-view .km-tabstrip .km-state-active span.km-icon {
+    color: rgb(128, 128, 128);
+}
+.km-wp .km-view .km-content .km-button.km-state-active {
+    background-color: rgb(0, 53, 66);
+}
+
+
+
+/*********************
+#login-form .km-icon:after,
+#login-form .km-icon:before,
+#login-form .km-contactadd:after,
+#login-form .km-contactadd:before,
+#login-form .km-rowdelete:after,
+#login-form .km-rowdelete:before,
+#login-form .km-rowinsert:after,
+#login-form .km-rowinsert:before,
+#login-form .km-detaildisclose:after,
+#login-form .km-detaildisclose:before,
+#login-form .km-loading:after,
+#login-form .km-filter-wrap:before {
+
+}
+*/

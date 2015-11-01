@@ -1,0 +1,291 @@
+<style>
+    .messages > .k-widget.k-tooltip-validation {
+        width: 100%;
+        text-align: left;
+        border-color: transparent;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .km-user:after,
+    .km-user:before
+    {
+        content: "\e319";
+    }
+
+    .km-message:after,
+    .km-message:before
+    {
+        content: "\e099";
+    }
+
+    .km-password:after,
+    .km-password:before
+    {
+        content: "\e0b1";
+    }
+
+    .invalid {
+        color: red;
+    }
+</style>
+
+<script>
+
+    (function() {
+
+        var validator = $('#register').kendoValidator({
+            validateOnBlur: false
+        }).data('kendoValidator');
+
+        var modelScope = {
+            register: {
+                // called when the 'register' button is clicked
+                registerUser: function() {
+                    $('#register input').each(function() {
+                        // reset all icon colors
+                        $('.km-icon').removeClass('invalid');
+
+                        // validate each input
+                        if (validator.validateInput($(this)) === false) {
+                            $(this).siblings('.km-icon').addClass('invalid');
+                            return false;
+                        }
+                    });
+                }
+            }
+        };
+
+        new kendo.mobile.Application(document.body, { modelScope: modelScope });
+
+    }());
+
+</script>
+
+<div data-role="view" data-use-native-scrolling="true">
+
+
+
+    <div id="register">
+        <div class="messages k-error-colored">
+            <span data-for="email" class="k-invalid-msg"></span>
+            <span data-for="username" class="k-invalid-msg"></span>
+        </div>
+        <ul data-role="listview" data-style="inset">
+            <li>
+                Email
+                <input name="email" type="email" required />
+                <span data-icon="message"></span>
+            </li>
+            <li>
+                Username
+                <input name="username" type="text" required />
+                <span data-icon="user"></span>
+            </li>
+            <li>
+                Password
+                <input name="password" type="password" required />
+                <span data-icon="password"></span>
+            </li>
+
+            <li>
+                <button data-role="button" data-bind="click: registerUser">Register</button>
+            </li>
+        </ul>
+        <ul data-role="listview" data-style="inset">
+            <li>
+                <!-- search -->
+                <input type="search" value="search" />
+                Search:
+            </li>
+            <li>
+                <!-- url -->
+                <input type="url" value="http://www.kendoui.com" />
+                URL:
+            </li>
+            <li>
+                <!-- email -->
+                <input type="email" value="kendoui@kendoui.com" />
+                Email:
+            </li>
+        </ul>
+
+
+    </div>
+
+    <p>
+    <h3>Known browser issues and possible workarounds:</h3>
+    Important: To avoid many Android and WP8 form issues, please use native scroller in all Views that require text entry! Check the example below.
+    <br/><br/>
+    Native scrolling is only enabled on platforms that support it: iOS > 5+, Android > 3+, WP8. BlackBerry devices do support it, but the native scroller is flaky.
+
+    <br/><br/>
+    <a href="http://docs.telerik.com/kendo-ui/mobile/forms/forms">http://docs.telerik.com/kendo-ui/mobile/forms/forms</a>
+    </p>
+    <form action="./index.html">
+        <ul data-role="listview" data-style="inset">
+            <li>
+                <label>Type text
+                    <input type="text" value="Text" class="k-textbox" />
+                </label>
+            </li>
+
+            <li>
+                <legend><a href="#" class="km-legend-button">+ Email</a></legend>
+                <input type="text" value="barista@telerik.com"/>
+            </li>
+            <li>
+                <legend>Volume</legend>
+                <input data-role="slider" id="slider" max="100" class="km-full-width-slider " />
+
+            </li>
+            <li>
+                <label class="km-inline-field km-label-above" style="width: 200px;">
+                    Phone Number
+                    <input type="text" value="+359 555 5555" />
+                </label>
+            </li>
+            <li>
+                <label style="width: 200px;">
+                    Type
+                    <select id="phone-type" type="select">
+                        <option value="First Option">Mobile</option>
+                        <option value="Second Option">Stationary</option>
+                    </select>
+                </label>
+            </li>
+            <li>
+                <legend><a href="#" class="km-legend-button">+ Email</a></legend>
+                <input type="text" value="barista@telerik.com" />
+            </li>
+
+
+        </ul>
+
+
+
+
+
+
+
+
+
+
+
+        <h4>Standalone Checkboxes example</h4>
+        <input type="checkbox" class="km-checkbox" id="chocolate" />
+        <label class="km-checkbox-label" for="chocolate">Chocolate</label>
+        <input type="checkbox" class="km-checkbox" id="ice-cream" checked="checked" />
+        <label class="km-checkbox-label" for="ice-cream">Ice cream</label>
+
+        <h4>Standalone RadioButtons example</h4>
+        <input type="radio" class="km-radio" name="sex" id="sex1" checked="checked"/>
+        <label class="km-radio-label" class="km-label" for="sex1" >Male</label>
+        <input type="radio" class="km-radio" name="sex" id="sex2"/>
+        <label class="km-radio-label" class="km-label" for="sex2">Female</label>
+
+    </form>
+
+    <form action="./index.html">
+        <ul data-role="listview" data-style="inset">
+            <li>
+                <label>Select element
+                    <select>
+                        <option value="First Option">First Option</option>
+                        <option value="Second Option">Second Option</option>
+                        <option value="Third Option">Third Option</option>
+                        <option value="Fourth Option">Fourth Option</option>
+                    </select>
+                </label>
+            </li>
+            <li>
+                <label>DropDownList
+                    <select id="dropdown">
+                        <option value="First Option">First Option</option>
+                        <option value="Second Option">Second Option</option>
+                        <option value="Third Option">Third Option</option>
+                        <option value="Fourth Option">Fourth Option</option>
+                        <option value="First Option">Fifth Option</option>
+                        <option value="Sixth Option">Sixth Option</option>
+                    </select>
+                </label>
+            </li>
+            <li>
+                <label>Slider
+                    <input id="slider" data-role="slider" type="range" max="100" />
+                </label>
+            </li>
+            <li>
+                <label>Type text
+                    <input type="text" value="Text" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type password
+                    <input type="password" value="password" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type search
+                    <input type="search" value="search" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type url
+                    <input type="url" value="http://www.telerik.com" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type email
+                    <input type="email" value="kendoui@telerik.com" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type number
+                    <input type="number" value="20" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type tel
+                    <input type="tel" value="+44 22 11 10" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type date
+                    <input type="date" value="2012-03-22" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type time
+                    <input type="time" value="22:30" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type month
+                    <input type="month" value="2012-01" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Type datetime-local
+                    <input type="datetime-local" value="2012-03-22T20:15" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Textarea
+                    <textarea style="resize: none">Multiline Text</textarea>
+                </label>
+            </li>
+        </ul>
+    </form>
+</div>

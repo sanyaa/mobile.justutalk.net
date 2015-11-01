@@ -1,0 +1,146 @@
+<script>
+
+    App = app.drupal.getApp();
+   /* App.loadController('nodeCtrl', function ($scope) {
+        $scope.lazy = function(){
+            alert('hello lazy');
+        }
+    });
+*/
+    App.run();
+    var injector = angular.injector(['ng', App.name]);
+    var $rootScope = injector.get('$rootScope');
+            console.log($rootScope.text + ' - ' + $rootScope.text1 + ' - ' + $rootScope.text2 )
+
+    //console.log(injector);
+
+</script>
+
+<div data-role="view" id="table-view" data-title="Table" style="margin: 0 auto" data-show="tableShow">
+
+    <div class="hero">table</div>
+    <a data-role="button" data-align="left" data-icon="globe" ng-click="lazy()">{{text}}</a>
+    <div>
+        <table class="table">
+            <caption>Optional table caption.</caption>
+            <thead role="rowgroup">
+            <tr role="row">
+                <th class="k-header" role="columnheader">#</th>
+                <th class="k-header" role="columnheader">Name</th>
+                <th class="k-header" role="columnheader">Desc</th>
+                <th class="k-header" role="columnheader">Letter</th>
+            </tr>
+            </thead>
+            <tbody id="listView-Rate">
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="divider-green"></div>
+
+    <div class="bs-example" data-example-id="condensed-table">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<script type="text/x-kendo-tmpl" id="template-Rate">
+
+        <tr>
+            <td width="10%">1</td>
+            <td width="15%"> #: name # </td>
+            <td width="55%"> #: description # </td>
+            <td width="25%"> #: letter # </td>
+        </tr>
+
+</script>
+
+
+<script>
+
+    function tableShow() {
+        //console.log(app.drupal.getApplication());
+
+        var groupedData = new kendo.data.DataSource({
+            data: [
+                {
+                    name: "Sashimi Salad",
+                    description: "Organic greens topped with market fresh sashimi, wasabi soy vinaigrette.",
+                    letter: "S"
+                },
+                {name: "Seaweed Salad", description: "A nice seaweed salad.", letter: "S"},
+                {name: "Edamame", description: "Boiled soy beans with salt.", letter: "E"},
+                {name: "Maguro", description: "Tuna pieces.", letter: "M"},
+                {name: "Tekka Maki", description: "Tuna roll with wasabi.", letter: "T"},
+                {name: "California Rolls", description: "Crab sticks, avocado and cucumber.", letter: "C"}
+            ]
+            //,
+            //group: { field: "letter" }
+        });
+
+
+        $("#listView-Rate").kendoListView({
+            template: kendo.template($("#template-Rate").html()),
+            dataSource: groupedData,
+            navigatable: true,
+            selectable: true,
+           /* filterable: {
+            field: "ProductName",
+                    operator: "startswith"
+        },*/
+        endlessScroll: true
+        });
+
+        /*$("#filterable-listview").kendoMobileListView({
+            dataSource: dataSource,
+            template: $("#mobile-listview-filtering-template").text(),
+
+        });*/
+
+        //new kendo.mobile.Application();
+    }
+</script>
+
+
+<style>
+
+
+
+</style>

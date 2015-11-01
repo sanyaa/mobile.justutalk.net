@@ -1,0 +1,301 @@
+<!--Home View-->
+<div id="home-view" data-role="view" data-title="Home" data-model="APP.models.home" data-init="mobileListViewTemplatesInit">
+    <!--<header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a id="skin-change" data-role="button" data-align="right" data-click="app.changeSkin">Flat</a>
+
+        </div>
+    </header>-->
+    
+    <!--<h3>Welcome!</h3>-->
+    <div data-stretch="true" id="scrollview-home" data-title="Photo Gallery">
+        <!--<div data-role="scrollview" data-page="1" data-content-height="100%" data-pager-overlay="true" id="home-scrollview">-->
+        <div data-role="scrollview" data-content-height="100%"  id="home-scrollview" >
+
+            <div class="photo photo1" data-role="page"></div>
+            <div class="photo photo2" data-role="page"></div>
+            <div class="photo photo3" data-role="page"></div>
+            <div class="photo photo4" data-role="page"></div>
+            <div class="photo photo5" data-role="page"></div>
+            <div class="photo photo6" data-role="page"></div>
+        </div>
+    </div>
+    
+    <!--<h4>Welcome!</h4>-->
+    <!--<p>-->
+        <!--Telerik AppBuilder&trade; enables you to build cross-platform device applications regardless of your-->
+        <!--development platform by combining the convenience of a local development toolset with the-->
+        <!--power and flexibility of the cloud.-->
+    <!--</p>-->
+
+
+    <!--<div class="welcome-image"></div>-->
+    <div class="welcome" >
+
+        <h3><i class="fa fa-globe"></i>Welcome</h3>
+        <p>
+            It is the concept of combining your phone number and your...
+        </p>
+
+    </div>
+    <div id="listview-templates">
+        <!--<div class="head">&nbsp;</div>-->
+        <ul id="custom-listview"></ul>
+    </div>
+
+    <script type="text/x-kendo-template" id="customListViewTemplate">
+
+        <div class="">
+            <div style="float: left; width: 10%;" class="fa-hover"><i class="fa ${font_icon}"></i></div>
+            <div style="float: left; width: 65%"><h3 class="item-title">${name}</h3>
+            <p class="item-info">${description}</p></div>
+            <a data-role="button" class="details-link">more...</a>
+        </div>
+    </script>
+
+    <script>
+        var groupedData = [
+            { name: "Hot Number", description: "It is the concept of combining your phone number and your...  ", url: "../../content/mobile/listview/sashimi-salad.jpg", font_icon:"fa-globe" },
+            { name: "Pinless Call", description: "Justutalk Pinless is our pre-paid calling systems allow you pin-less... ", url: "../../content/mobile/listview/seaweed-salad.jpg", font_icon:"fa-signal"  },
+            { name: "Web SMS", description: "We happay to introduce our new Online SMS service. This service...", url: "../../content/mobile/listview/edamame.jpg", font_icon:"fa-comment-o"  },
+            { name: "Apps", description: "By using apps you can get connected from anywhere in the world...", url: "../../content/mobile/listview/maguro.jpg", font_icon:"fa-mobile"  },
+            { name: "Mobile Topup", description: "With justutalk you can send Top Up in just a few minutes to...", url: "../../content/mobile/listview/tekka-maki.jpg", font_icon:"fa-money"  },
+        ];
+
+        function mobileListViewTemplatesInit() {
+            $("#custom-listview").kendoMobileListView({
+                dataSource: kendo.data.DataSource.create({data: groupedData/*, group: "letter"*/ }),
+                template: $("#customListViewTemplate").html(),
+                //headerTemplate: "<h2>Letter ${value}</h2>"
+            });
+
+
+            var scrollview = $("#home-scrollview").data("kendoMobileScrollView");
+            console.log(scrollview);
+            //console.log(scrollview.pageCount());
+            //console.log(scrollview.getpageCount());
+             /* scrollview.next();
+             */
+
+            var counter = 0;
+            setInterval(function() {
+                var scrollview = $("#home-scrollview").data("kendoMobileScrollView");
+                //console.log(scrollview);
+
+                if(counter<6){
+                    scrollview.next();
+                }else{
+                    scrollview.refresh();
+                    scrollview.scrollTo(0);
+                    counter=0;
+                }
+                counter++;
+            }, 5000);
+        }
+
+        function next() {
+            console.log('hello');
+            var scrollview = $("#home-scrollview").data("kendoMobileScrollView");
+            scrollview.next();
+        }
+
+       /* */
+    </script>
+
+    <style scoped>
+
+        #custom-listview .fa {
+            /* width: 100px; */
+            font-size: 1.5em;
+            margin-top: 5px;
+            text-align: center;
+            color: #8CC700;
+        }
+
+        #home-view .welcome{
+            background: url(images/lg/285.jpg) no-repeat 45% 5% transparent;
+            color: #fff;
+            height: 150px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+      /*
+
+        #listview-templates .km-content {
+                background-color: #f0f0f0;
+        }
+
+        #listview-templates .head {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: 100px;
+            background: url(../../content/mobile/listview/food.jpg) no-repeat center top;
+            -webkit-background-size: 100% auto;
+            background-size: 100% auto;
+        }
+
+        #listview-templates .km-navbar .km-button {
+            background-color: #974d2e;
+        }
+
+        #listview-templates,
+        #listview-templates .km-navbar,
+        .km-wp-light #listview-templates .km-navbar,
+        .km-wp-dark #listview-templates .km-navbar,
+        #listview-templates .km-content .km-button {
+            background: url(../images/shared/patterns/pattern9.png);
+            color: #ffffff;
+        }
+
+        #listview-templates .item-photo {
+            width: 4em;
+            height: 4em;
+            float: left;
+            margin: .5em 0;
+            -webkit-box-shadow: 0 1px 3px #333;
+            box-shadow: 0 1px 3px #333;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+        }
+        */
+
+
+        /*#custom-listview .item-title,
+        #custom-listview .item-info {
+            color: #4c2a1b;
+        }
+
+        #custom-listview .item-info {
+            color: #974d2e;
+        }
+
+
+        #custom-listview li{
+
+            background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    right top,
+                    color-stop(0, #022902),
+                    color-stop(1, #BEF068)
+            );
+            background-image: -o-linear-gradient(right, #022902 0%, #BEF068 100%);
+            background-image: -moz-linear-gradient(right, #022902 0%, #BEF068 100%);
+            background-image: -webkit-linear-gradient(right, #022902 0%, #BEF068 100%);
+            background-image: -ms-linear-gradient(right, #022902 0%, #BEF068 100%);
+            background-image: linear-gradient(to right, #022902 0%, #BEF068 100%);
+
+        }
+        */
+
+
+        #custom-listview {
+            margin: 0;
+        }
+        #custom-listview .item-title {
+            float: left;
+            font-size: 1em;
+            line-height: 1.4em;
+            margin: .3em 1em 0 .6em;
+            /*width: 50%;*/
+        }
+        #custom-listview .item-info {
+            float: left;
+            font-size: .8em;
+            line-height: 1em;
+            margin: 0 0 0 .95em;
+            /*width: 45%;*/
+        }
+
+        #listview-templates .details-link {
+            margin-top: -1em;
+            position: absolute;
+            right: 0.6em;
+            top: 50%;
+            font-size: .7em;
+        }
+
+        #listview-templates .km-listview .km-list {
+            margin: 0;
+        }
+
+        #listview-templates .km-listview .km-group-title {
+            padding: 0;
+            border-top: 0;
+            box-shadow: none;
+        }
+
+        #listview-templates .km-group-title h2 {
+            margin: 0;
+            padding-top: .2em;
+            text-shadow: none;
+        }
+
+        #listview-templates .km-group-title h2 {
+            color: #974d2e;
+            font-weight: normal;
+            font-size: 1.4em;
+            background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.45) 6%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(100, 100, 100, 0)), url(../../content/shared/images/patterns/pattern4.png);
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, rgba(255, 255, 255, 0.5)), color-stop(0.06, rgba(255, 255, 255, 0.45)), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(1, rgba(100, 100, 100, 0))), url(../../content/shared/images/patterns/pattern4.png);
+        }
+
+        #listview-templates .km-listview .km-list {
+            border-top-color: #dcbe87;
+            background-image: url(images/shared/patterns/pattern8.png);
+        }
+
+        .km-tablet .km-ios #listview-templates .km-view-title
+        {
+            color: #fff;
+            text-shadow: 0 -1px rgba(0,0,0,.5);
+        }
+
+        .km-wp .km-group-title .km-text {
+            padding: 0;
+        }
+
+        .km-wp .km-group-title .km-text h2 {
+            padding: 0 0 .1em .7em;
+        }
+
+        .km-ios7 #listview-templates .km-navbar .km-button,
+        .km-ios7 #listview-templates .km-navbar .km-view-title
+        {
+            background: transparent;
+            color: #fff;
+        }
+    </style>
+
+</div>
+
+
+
+<style>
+
+    #scrollview-home  .photo{
+        height:150px;
+    }
+    
+    #scrollview-home{
+        padding: 0 .1rem;
+    }
+    
+    #scrollview-home .photo {
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .photo1 {background-image: url("images/gallery/1.jpg");}
+    .photo2 {background-image: url("images/gallery/2.jpg");}
+    .photo3 {background-image: url("images/gallery/3.jpg");}
+    .photo4 {background-image: url("images/gallery/4.jpg");}
+    .photo5 {background-image: url("images/gallery/5.jpg");}
+    .photo6 {background-image: url("images/gallery/6.jpg");}
+    
+</style>

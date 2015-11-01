@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html ng-app="myDrupalApp">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css">
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/Style.css" rel="stylesheet" />
+    <link href="styles/logoimages.css" rel="stylesheet" />
+
+    
+    <script src="cordova.ios.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="angular/angular.js"> </script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <!--<script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/location.js"></script>
+    <script src="scripts/weather.js"></script>
+        
+    <script>
+        
+        
+        //This global varibale JustutalkMobile will act as a name space for
+        //our application. Objects from other modules will be
+        //available as properties of this object.
+        //This way we lower the possibility of naming collisions
+        //when using our code in conjunction with other JavaScript libraries        
+        
+        var JustutalkMobile = JustutalkMobile || {};
+        console.log(app.loginService.viewModel.isLoggedIn);
+        //var app = app || {};
+        //app.setText('testing 123');
+    </script>
+    
+    <script src="angular/angular-drupal.js"> </script>
+    <script src="angular/app.js"> </script>
+
+    <script>
+        console.log(app.drupal.drupalApp);
+
+        app.drupal.setText('77777 88888');
+
+    </script>
+   
+</head>
+<body>
+     
+    <!--Layout-->
+    <div data-role="layout" data-id="main-layout">
+        <!--Header-->
+        <div data-role="header">
+            <div data-role="navbar">
+                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <span data-role="view-title"></span>
+            </div>
+        </div>
+		
+        <!-- application views will be rendered here -->
+        
+        <!--Footer-->
+        <div data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#views/home.html" data-icon="home">Home</a>
+                <a href="#views/login.html" data-icon="contacts">Login</a>
+                <a href="#tabstrip-location" data-icon="search">Location</a>
+                <a href="#tabstrip-weather" data-icon="globe">Weather</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- application drawer and contents -->
+    <div data-role="drawer" id="appDrawer" style="width: 270px" data-title="Navigation">
+        <div data-role="header">
+          <div data-role="navbar">
+            <span data-role="view-title"></span>
+          </div>
+        </div>
+        <ul data-role="listview">
+          <li><a href="views/home.html" data-icon="home">Home</a></li>
+          <li><a href="views/settings.html" data-icon="settings">Settings</a></li>
+          <li><a href="views/contacts.html" data-icon="contacts">Contacts</a></li>
+          <li><a href="views/gallery.html" data-icon="camera">Gallery</a></li>
+          <li><a href="#views/tmp/popover.html" data-icon="globe">popover</a></li>
+          <li><a href="#views/tmp/modal.html" data-icon="globe">modal</a></li>
+          <li><a href="#views/tmp/pane.html" data-icon="globe">pane</a></li>
+          <li><a href="#views/tmp/flexboxes.html" data-icon="globe">flexboxes</a></li>
+          <li><a href="#views/tmp/actionsheet.html" data-icon="globe">ActionSheet</a></li>
+          <li><a href="#views/tmp/buttongroup.html" data-icon="globe">buttongroup</a></li>
+          <li><a href="#views/tmp/form.html" data-icon="globe">form</a></li>
+          <li><a href="#views/tmp/collapsible.html" data-icon="globe">collapsible</a></li>
+        </ul>
+      </div>
+    
+    
+    <!--Home View-->
+    <div id="tabstrip-home"
+        data-role="view"
+        data-title="Home">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <a id="skin-change" data-role="button" data-align="right" data-click="app.changeSkin">Flat</a>
+            </div>
+        </header>
+
+        <h3>Welcome!</h3>
+        <p>
+            Telerik AppBuilder&trade; enables you to build cross-platform device applications regardless of your
+            development platform by combining the convenience of a local development toolset with the
+            power and flexibility of the cloud.
+        </p>
+        <div class="welcome-image"></div>
+    </div>
+
+    <!--Login View-->
+    <div id="login-view"
+        data-role="view"
+        data-title="Login"
+        data-model="app.loginService.viewModel">
+
+        <div class="logo-image"></div>
+        <div>
+            <h3 data-bind="visible: isLoggedIn">Welcome, <span data-bind="text: username"></span>!</h3>
+            <input id="logout" type="submit" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" value="Logout" class="login-button" />                      
+            
+        </div>
+        <form data-bind="events: { keyup: checkEnter }" id="login-form" data-id="login-form">
+            <h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
+            <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+                <li>
+                    <label>
+                        <div>
+                            <span class="km-icon km-contacts"></span>Username
+                            <input type="text" data-bind="value: username"  placeholder="password"/>
+                        </div>
+                    </label>
+                </li>
+                <li>
+                    Password
+                    <input type="password" data-bind="value: password"  placeholder="password"/>
+                    <span data-icon="password"></span>
+                </li>
+                
+
+            </ul>
+            <input id="login" type="submit" data-role="button"
+                   data-bind="click: onLogin, invisible: isLoggedIn"
+                   value="Login" class="login-button" />
+        </form>
+        
+        <style>
+
+            #icons ul
+            {
+                margin: 20px auto 0;
+                display: block;
+                text-align: left;
+                white-space: normal;
+            }
+
+            #icons ul li
+            {
+                display: inline-block;
+                vertical-align: middle;
+                padding: 10px 0;
+                list-style: none;
+                font-size: 12px;
+                min-width: 140px;
+            }
+            .k-icon {
+                margin-right: 5px;
+            }
+
+        </style>
+        
+    </div>
+
+    <!--Location View-->
+    <div id="tabstrip-location"
+        data-role="view"
+        data-title="Location"
+        data-init="app.locationService.initLocation"
+        data-show="app.locationService.show"
+        data-hide="app.locationService.hide"
+        data-model="app.locationService.viewModel"
+        data-stretch="true">
+
+        <div id="map-canvas" class="map" data-bind="visible: isGoogleMapsInitialized"></div>
+
+        <div id="no-map" data-bind="invisible: isGoogleMapsInitialized">
+            <h3>Location requires internet connection to display the map.</h3>
+        </div>
+        <div id="map-search-wrap" class="map-tools" data-bind="visible: isGoogleMapsInitialized, invisible: hideSearch">
+            <div>
+                <button id="map-navigate-home" class="map-tools-button home" data-bind="click: onNavigateHome"></button>
+                <input id="map-address" type="search" class="map-tools-input" data-bind="value: address" placeholder="Address" />
+                <button id="map-search" class="map-tools-button search" data-bind="click: onSearchAddress"></button>
+            </div>
+        </div>
+    </div>
+
+    <!--Weather View-->
+    <div id="tabstrip-weather"
+        data-role="view"
+        data-title="Weather"
+        data-model="app.weatherService.viewModel">
+
+        <ul data-role="listview" data-style="inset"
+            data-bind="source: weatherDataSource"
+            data-template="weather-forecast-template">
+        </ul>
+    </div>
+
+    <!--Weather forecast template-->
+    <script id="weather-forecast-template" type="text/x-kendo-tmpl">
+        <div class="w-item-template">
+            <span class="w-icon ${image}"></span>
+            <h4 class="w-date">${day}</h4>
+            <div class="w-temp">
+                <span>${highTemperature}<sup>&deg;</sup></span>
+                <span>${lowTemperature}<sup>&deg;</sup></span>
+            </div>
+        </div>
+    </script>
+   
+      
+    
+    <script>
+    
+      document.addEventListener('deviceready', function (window) {
+
+            app = window.app = window.app || {};
+
+            console.log(app);
+
+
+            //JustutalkMobile.main.initializeApp();
+
+           /* var app = JustutalkMobile.app;
+            app.getApplication();
+           	app.setText('testing 123');
+            //app.login('admin', 'H4der222');
+
+
+          	// Make controller Ctrl in module Foo
+			app.controller('Ctrl', function($scope) {
+            	$scope.greet=function(){
+                        alert('hello');
+                    }
+
+            });
+
+
+             app.controller('CustomersController', ['$scope', function ($scope) {
+					$scope.greet=function(){
+                        alert('hello');
+                    }
+                    //Controller code goes here
+                 }]);*/
+      });
+    
+    </script>
+   
+</body>
+</html>

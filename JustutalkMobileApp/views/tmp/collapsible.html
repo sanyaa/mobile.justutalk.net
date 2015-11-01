@@ -1,0 +1,211 @@
+<div id="collapsible-view" data-role="view"  data-title="Collapsible" data-init="onInit" data-use-native-scrolling="true">
+
+    <div class="hero">Collapsible</div>
+
+    <div id="collapsible1" data-role="collapsible" data-collapse="collapseHandler">
+        <h2 class="classname">Header</h2>
+        <ul>
+            <li>You just dial the Access number 02035146800 or 02037347133 -wait and listen the voice prompt.</li>
+            <li>Then Dial your Destination Number followed by 00 + Country code + Telephone Number + # (or for more minutes without 00, check call rates).</li>
+            <li>Wala! you are connected.</li>
+        </ul>
+        <p>To make a redial press *2, follow-up call press ## on your phone keypad then repeat the step 2.</p>
+    </div>
+    <div id="collapsible2" data-role="collapsible" data-collapse="collapseHandler" style="height: auto">
+        <h2 class="classname">Header</h2>
+        <p>By using Mobile apps you can get connected from anywhere in the world. Only needs internet in to yor Mobile sets.
+
+            How to call via Mobile Apps:
+
+            To use your mobile dialler, you need three things :
+
+
+            Operator Code - 89434
+            User name and Password ( https://www.justutalk.net/manage-pin )
+
+
+            You need to Download and Install Mobile Dialer on your smart phone software from the following link:
+
+            iTel Mobile Dialer Express
+
+            Symbian 2.30.0   --    http://173.192.15.191/newmd or http://173.192.15.188/imd
+
+
+            Android 3.6.3 -- https://play.google.com/store/apps/details?id=com.revesoft.itelmobiledialer.dialer or
+            http://173.192.15.191/newmd or http://173.192.15.188/imd
+
+
+            iPhone 3.4.4 -- https://itunes.apple.com/in/app/itel-mobile-dialer-express/id445338527?mt=8
+
+
+            Windows Phone  3.5.0.0 -- http://www.windowsphone.com/en-us/store/app/itelmobiledialer/de0e1e5b-aaad-40b5-bc34-ea60159b7851
+
+
+            Blackberry 3.18.1.1 -- http://appworld.blackberry.com/webstore/content/29163891/?lang=en&countrycode=BD
+
+
+            After getting your user name and password you can make calls worldwide from anywhere in the World.
+
+            Dialinging Format : 00+country code+ destination number</p>
+    </div>
+    <div id="collapsible3" data-role="collapsible" data-collapse="collapseHandler">
+        <h2 class="classname">Header</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+
+
+    <ul data-role="listview" data-type="group">
+        <li>
+            Configuration
+            <ul>
+                <li>
+                    Show/Hide collapsible <input type="checkbox" data-role="switch" data-bind="checked: isVisible">
+                </li>
+            </ul>
+        </li>
+        <li>
+            Configuration 2
+            <p>
+                Kendo UI Mobile Collapsible supports the
+                <a href="http://docs.telerik.com/kendo-ui/getting-started/framework/mvvm/bindings/events">events</a> and
+                <a href="http://docs.telerik.com/kendo-ui/getting-started/framework/mvvm/bindings/visible">visible</a> bindings.
+            </p>
+            <p> The Netherlands is a constituent country of the Kingdom of the Netherlands, located mainly in North-West Europe and with several islands in the Caribbean. Mainland Netherlands borders the North Sea to the north and west, Belgium to the south, and Germany to the east, and shares maritime borders with Belgium, Germany and the United Kingdom. </p>
+        </li>
+    </ul>
+    <ul data-role="listview" data-type="group">
+        <li>
+            Preview
+            <ul>
+                <li>
+                    Show/Hide collapsible <input type="checkbox" data-role="switch" data-bind="checked: isVisible">
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div id="collapsible4" data-role="collapsible" data-collapse="collapseHandler"
+         data-icon-postion="right"
+         data-inset="true"
+         data-collapse-icon="arrow-up" data-expand-icon="arrow-down">
+        <h3 class="classname">Netherlands</h3>
+        <p>The Netherlands is a constituent country of the Kingdom of the Netherlands, located mainly in North-West Europe and with several islands in the Caribbean. Mainland Netherlands borders the North Sea to the north and west, Belgium to the south, and Germany to the east, and shares maritime borders with Belgium, Germany and the United Kingdom. </p>
+    </div>
+
+    <div id="collapsible5" data-role="collapsible" data-collapse="collapseHandler"
+                data-icon-postion="right"
+                data-inset="true"
+                data-collapse-icon="folder-open" data-expand-icon="folder-close">
+        <h3 class="classname">Netherlands</h3>
+        <p>The Netherlands is a constituent country of the Kingdom of the Netherlands, located mainly in North-West Europe and with several islands in the Caribbean. Mainland Netherlands borders the North Sea to the north and west, Belgium to the south, and Germany to the east, and shares maritime borders with Belgium, Germany and the United Kingdom. </p>
+    </div>
+
+    <div id="collapsible6" data-role="collapsible" data-collapse="collapseHandler"
+         data-icon-postion="right"
+         data-inset="true"
+         data-collapse-icon="minus" data-expand-icon="plus">
+        <h3 class="classname">Netherlands</h3>
+        <p>The Netherlands is a constituent country of the Kingdom of the Netherlands, located mainly in North-West Europe and with several islands in the Caribbean. Mainland Netherlands borders the North Sea to the north and west, Belgium to the south, and Germany to the east, and shares maritime borders with Belgium, Germany and the United Kingdom. </p>
+    </div>
+
+
+</div>
+
+
+
+<script>
+    //var app = new kendo.mobile.Application();
+
+    function collapseHandler() {
+        console.log("expand");
+    }
+
+</script>
+
+<style>
+    
+    
+    
+    #collapsible2 .collapsible-content{
+        height: auto;
+    }
+
+    /*
+       define custom icon names, full list of available icons can be found at:
+       http://docs.telerik.com/kendo-ui/mobile/icons
+   */
+
+
+    .hero {
+        display: block;
+        margin: 0;
+        padding-left: .5em;
+        height: 110px;
+        line-height: 110px;
+        font-size: 18px;
+        color: rgba(255,255,255,.85);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        background: url(images/shared/grass.jpg) no-repeat center center;
+        -webkit-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+
+    .classname {
+        padding: 5px 32px;
+        /*
+        background:#575757;
+        border:solid 1px #2d2d2d;
+        text-align:center;
+        padding:10px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        */
+    }
+
+    .classname {
+        background: -webkit-gradient(linear, 88% 20%, 10% 21%, from(#8cc700), to(#4e7500));
+        color: #fff;
+        font-size: 1em;
+        /*color: rgb(78, 117, 0);*/
+    }
+
+    #collapsible-view .km-collapsible {
+        margin: .02em 0;
+    }
+
+    #collapsible-view .km-collapsible-header {
+        position: relative;
+        border-style: solid;
+        border-width: 1px 0;
+        padding: .4em 0;
+        line-height: 20px;
+        background: -webkit-gradient(linear, 88% 20%, 10% 21%, from(#8cc700), to(#4e7500));
+
+    }
+
+    #collapsible-view .km-icon-left .km-arrow-s,
+    #collapsible-view .km-icon-left .km-arrow-n {
+        left: .2em;
+    }
+
+    #collapsible-view .km-collapsible-header .km-icon {
+        color: #FFFEFE;
+        font-size: 20px;
+        margin: 3px 0;
+    }
+
+    #collapsible-view .km-collapsible-header .km-arrow-s,
+    #collapsible-view .km-collapsible-header .km-arrow-n {
+        position: absolute;
+    }
+
+    .km-collapsible-header, .km-collapsible-content {
+        border-color: rgba(255, 255, 255, 0.5);
+        color: #000;
+    }
+
+    </style>

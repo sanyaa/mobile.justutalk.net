@@ -1,0 +1,86 @@
+<div data-role="view" data-title="Ways to Call" data-model="APP.models.settings">
+
+
+   <!-- <div data-role="header" class="header hero">
+        <div data-role="navbar">
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+
+            <span data-role="view-title"></span>
+
+            <a data-role="button" class="km-icon km-more-v" data-align="right" href="#views/my-account.html"></a>
+            <a data-role="button" class="km-icon km-contacts" data-align="right" href="#user-popover" data-rel="popover"></a>
+        </div>
+    </div>-->
+
+    <div class="hero">Ways to Call</div>
+    <div class="divider-green"></div>
+
+    <ul id="list-View" data-role="listview" data-style="inset">
+        <li><a href="#views/ways2call-via-access-no.html" data-transition="slide"><i class="fa fa-fax"></i>Calling via access number</a></li>
+        <li><a href="#views/ways2call-via-hot-no.html" data-transition="slide"><i class="fa fa-globe"></i>Calling via hot no./direct dial/FnF</a></li>
+        <li><a href="#views/ways2call-via-mobile-app.html" data-transition="slide"><i class="fa fa-mobile icon-align-2"></i>Calling via mobile application</a></li>
+        <li><a href="#views/ways2call-via-pc-app.html" data-transition="slide"><i class="fa fa-desktop"></i>Calling via pc application</a></li>
+    </ul>
+
+</div>
+
+
+
+<style>
+
+    .jt-margin-10-tb {
+        margin: 10px 0;
+    }
+
+    .divider-green{
+        border-top: .3em solid green;
+        margin-top: .1em;
+    }
+
+    .icon-align-2 {
+        font-size: 1.5em;
+        margin-left: -0.1em;
+        margin-right: .8em;
+    }
+
+    .header.hero .km-navbar {
+        background-color: transparent;
+        border: none;
+    }
+    .header.hero .km-navbar a {
+        color: #fff;
+    }
+
+    .hero {
+        display: block;
+        margin: 0;
+        padding-left: .5em;
+        height: 110px;
+        line-height: 110px;
+        font-size: 18px;
+        color: rgba(255,255,255,.85);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        background: url(images/header/5.jpg) no-repeat center center;
+        -webkit-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+    
+
+    .header.hero {
+        display: block;
+        margin: 0;
+        padding-left: .5em;
+        height: 110px;
+        line-height:1em;
+        color: rgba(255,255,255,.85);
+        font-size: 1em;
+        text-align: left;
+        text-transform:none;
+        /*letter-spacing: .2em;*/
+        background: url(images/header/5.jpg) no-repeat center center;
+        -webkit-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+</style>

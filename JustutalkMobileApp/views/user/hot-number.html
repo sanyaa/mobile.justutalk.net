@@ -1,0 +1,250 @@
+<div data-role="view" data-title="Settings" data-model="app.loginService.viewModel" 
+    data-before-show="hotNumberInit" data-show="hotNumberShow">
+  <h1 data-bind="html: title"></h1>
+
+
+
+  <a data-role="button" data-align="left" data-icon="globe" data-click="deleteTest">delete</a>
+  <a data-role="button" data-align="left" data-icon="globe" data-click="createTest">create</a>
+  <a data-role="button" data-align="left" data-icon="globe" data-bind="click: updateTest">update      
+  </a>
+
+
+
+  <ul data-role="listview"
+      data-source="hot_number_dataSource"
+      data-auto-bind="true"
+      data-template="hot-number-template1">
+  </ul>
+
+
+  <ul id="hot-number-list"></ul>
+
+  <ul data-role="listview" data-source="groupedData" data-fixed-headers="true"
+      data-template="my-template" data-header-template="header-template">
+
+  </ul>
+
+
+</div>
+
+<script type="text/x-kendo-template" id="my-template">
+  <h3 class="item-title">#: name #</h3>
+  <p class="item-info">#: description #</p>
+</script>
+
+<script type="text/x-kendo-template" id="header-template">
+  #: value #
+</script>
+
+<script type="text/x-kendo-template" id="hot-number-template">
+  <h3 class="item-title">#: name #</h3>
+  <p class="item-info">#: status #</p>
+</script>
+
+<script type="text/x-kendo-template" id="hot-number-template1">
+  <h3 class="item-title">#: name #</h3>
+  <p class="item-info">#: email #</p>
+</script>
+
+
+<script>
+  var groupedData = new kendo.data.DataSource({
+    data: [
+      { name: "Sashimi Salad", description: "Organic greens topped with market fresh sashimi, wasabi soy vinaigrette.",  letter: "S" },
+      { name: "Seaweed Salad", description: "A nice seaweed salad.",  letter: "S" },
+      { name: "Edamame", description: "Boiled soy beans with salt.",  letter: "E" },
+      { name: "Maguro", description: "Tuna pieces.",  letter: "M" },
+      { name: "Tekka Maki", description: "Tuna roll with wasabi.",  letter: "T" },
+      { name: "California Rolls", description: "Crab sticks, avocado and cucumber.",  letter: "C" }
+    ],
+    group: { field: "letter" }
+  });
+
+
+
+  var hot_number_dataSource = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "http://excitenet.co.uk/users-json/test.json",
+          //data: { username: username, password: password},
+          dataType: "json",
+          type: "GET"
+        }
+      },
+      schema: {
+        /*model: { id: "uid" },
+        data: function (result) {
+          return result;
+        }*/
+      }
+  });
+
+
+
+  function createTest(){
+      
+      
+    var token = app.loginService.viewModel.token;  
+    
+    alert(token);
+      
+      
+    var testData= {
+      "name":"John P ",
+      "email":"john@mail.com",
+      "status":1
+    };
+
+    hotNumber_dataCre = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "http://excitenet.co.uk/users-json/test.json",
+          beforeSend: function(xhr){
+             xhr.setRequestHeader('X-CSRF-Token', token);
+             //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');             
+
+          },
+          data: testData,
+          dataType: "json",
+          type: "POST"
+        }
+      },
+      schema: {
+        //model: { id: "uid" },
+        data: function (result) {
+          return [result];
+        }
+      }
+    });
+    hotNumber_dataCre
+            .fetch()
+            .then(function(){
+              var data = hotNumber_dataCre.data();
+              console.log(data);
+            });
+
+  }
+
+
+  function updateTest(){
+
+    var updData= {
+      "name":"HenryP",
+      "email":"henry@mail.com",
+      "status":1
+    };
+
+
+    /**
+     * revoke these permissions
+     * Services Raw
+     *
+     * Access raw field save/update function
+     * Allows access to raw field save/update API call via services.
+     * */
+
+
+    hotNumber_dataUpd = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "http://excitenet.co.uk/users-json/test/2",
+          beforeSend: function(xhr){
+             xhr.setRequestHeader('X-CSRF-Token', 'Lyf7ZifLESV9Is0qQ-_zE87BFz5n-EXyS8MzgvQmikc');
+             xhr.setRequestHeader('Content-Type','application/json');
+
+          },
+          data: updData,
+          dataType: "json",
+          type: "PUT"
+        }
+      },
+      schema: {
+        /*model: { id: "uid" },
+        data: function (result) {
+          return [result];
+        }*/
+      }
+    });
+    hotNumber_dataUpd
+            .fetch()
+            .then(function(){
+              var data = hotNumber_dataUpd.data();
+              console.log(data);
+            });
+
+  }
+
+
+  function deleteTest(){
+      
+    var token = app.loginService.viewModel.token;  
+    
+    alert(token);  
+      
+      
+    hotNumber_dataDel = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "http://excitenet.co.uk/users-json/test/10",
+          beforeSend: function(xhr){
+             xhr.setRequestHeader('X-CSRF-Token', token);
+             //xhr.setRequestHeader('Content-Type','application/json');
+
+          },
+          dataType: "json",
+          type: "DELETE"
+        }
+      },
+      schema: {
+        //model: { id: "uid" },
+        data: function (result) {
+          return [result];
+        }
+      }
+    });
+    hotNumber_dataDel
+            .fetch()
+            .then(function(){
+              var data = hotNumber_dataDel.data();
+              console.log(data);
+            });
+
+  }
+
+
+  function hotNumberShow(){
+
+    hotNumber_dataSource = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "http://excitenet.co.uk/users-json/test.json",
+          //data: { username: username, password: password},
+          dataType: "json" ,
+          type: "GET"
+        }
+      },
+      schema: {
+        //model: { id: "uid" },
+        data: function(result) {
+          return result;
+        }
+      }
+    });
+   /* hotNumber_dataSource
+        .fetch()
+        .then(function(){
+          var data = hotNumber_dataSource.data();
+          console.log(data);
+    });*/
+
+
+
+    $("#hot-number-list").kendoMobileListView({
+      dataSource: hotNumber_dataSource,
+      pullToRefresh: true,
+      template: $("#hot-number-template").text()
+    });
+  }
+
+</script>

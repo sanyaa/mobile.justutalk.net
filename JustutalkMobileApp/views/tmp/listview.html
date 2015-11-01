@@ -1,0 +1,68 @@
+<div data-role="view">
+    <a data-role="button" data-click="fetchData">Fetch Data</a>
+    <ul data-role="listview"
+        data-source="foo"
+        data-auto-bind="false"
+        data-template="foo-template">
+    </ul>
+
+
+    <script type="text/x-kendo-template" id="foo-template">
+        #: data #
+    </script>
+
+    <script>
+        var foo = new kendo.data.DataSource({
+            data: [ 1, 2, 3, 4, 5]
+        });
+
+        function fetchData() {
+            foo.fetch();
+        }
+
+        //new kendo.mobile.Application();
+    </script>
+
+
+    <hr/>
+    <p style="text-align: center">===========================</p>
+    <hr/>
+
+
+    <ul data-role="listview"
+        data-source="groupedData"
+        data-fixed-headers="true"
+        data-template="my-template"
+        data-header-template="header-template">
+
+    </ul>
+
+    <script type="text/x-kendo-template" id="my-template">
+        <h3 class="item-title">#: name #</h3>
+        <p class="item-info">#: description #</p>
+    </script>
+
+    <script type="text/x-kendo-template" id="header-template">
+        #: value #
+    </script>
+
+    <script>
+        var groupedData = new kendo.data.DataSource({
+            data: [
+                { name: "Sashimi Salad", description: "Organic greens topped with market fresh sashimi, wasabi soy vinaigrette.",  letter: "S" },
+                { name: "Seaweed Salad", description: "A nice seaweed salad.",  letter: "S" },
+                { name: "Edamame", description: "Boiled soy beans with salt.",  letter: "E" },
+                { name: "Maguro", description: "Tuna pieces.",  letter: "M" },
+                { name: "Tekka Maki", description: "Tuna roll with wasabi.",  letter: "T" },
+                { name: "California Rolls", description: "Crab sticks, avocado and cucumber.",  letter: "C" }
+            ],
+            group: { field: "letter" }
+        });
+
+        //new kendo.mobile.Application();
+    </script>
+
+
+
+</div>
+

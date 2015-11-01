@@ -1,0 +1,53 @@
+<!--Login View-->
+<div id="login-view"
+     data-role="view"
+     data-title="Login"
+     data-transition="overlay:up"
+     data-persist="true"
+     data-model="app.loginService.viewModel">
+
+    <div class="memu-logo">
+        <img src="images/__logo.png" alt="justutalk.net" width="100"/>
+        <h3 style="color: #000">It's simple...</h3>
+    </div>
+    <div>
+        <h3 data-bind="visible: isLoggedIn" style="text-align: center;">Welcome, <span data-bind="text: username"></span>!</h3>
+        <input id="logout" type="submit" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" 
+                value="Logout" class="login-button" />
+
+    </div>
+    <form data-bind="events: { keyup: checkEnter }" id="login-form" data-id="login-form">
+        <!--<h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>-->
+        
+        <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+            
+            <div><span class="error" data-bind="text: loginError"></span></div>
+            <li>
+                <input type="text" data-bind="value: username" placeholder="username"/>
+                <span data-icon="contacts"></span>
+            </li>
+            <li>
+                <input type="password" data-bind="value: password" placeholder="password"/>
+                <span data-icon="password"></span>
+            </li>
+        </ul>
+        <input id="login" type="submit" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn"
+               value="Login" class="login-button" />        
+
+        <input id="register" type="button" data-role="button" data-click="register" data-bind="invisible: isLoggedIn"
+               value="Register" class="login-button" />
+        <p><a href="#" data-transition="none">Forgot your password?</a></p>
+    </form>
+
+    <style>
+
+        .error{
+            color: red;
+            font-size: .8em;
+            padding: 15px;
+            display: block;
+        }
+
+    </style>
+
+</div>

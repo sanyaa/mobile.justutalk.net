@@ -1,0 +1,68 @@
+<!-- My Acconut View -->
+<div data-role="view" id="account-view" data-title="My Account"
+    data-transition="overlay:up" style="background-color: rgba(255 255 255 0 )">
+
+    <!--<div data-role="header" id="account-view-header">
+        <div data-role="navbar">
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <span data-role="view-title"></span>
+        </div>
+        <div class="profile-header">
+
+            <div class="img-wrapper">
+                <img src="images/user4.png" alt=""/>
+
+            </div>
+            <p class="profile-title">Title</p>
+            <p class="profile-sub-title">sub title</p>
+
+        </div>
+    </div>-->
+
+    <ul  data-role="listview" data-style="inset" class="bg-gray">
+        <!--<li data-icon="home"><a href="/voizage-account">Voizage Account</a></li>
+        <li data-icon="home"><a href="/our-apps">Mobile Applications</a></li>
+        <li data-icon="home"><a href="/our-apps">PC2Phone</a></li>
+        <li data-icon="home"><a href="/assigned-rates-plan">Current Rate Plan</a></li>-->
+        <li data-icon=""><a href="#views/user/sms.html"><span class="km-icon km-sms-light"></span>Send SMS</a></li>
+        <!--<li data-icon="home"><a href="/user-dashboard">User Dashboard</a></li>
+        <li data-icon="home"><a href="/user">My Profile</a></li>
+        <li data-icon="home"><a href="/manage-pin">Pc &amp; Mobile Dialer Password</a></li>-->
+        <li data-icon="home"><a href="#views/user/topup.html"><span class="km-icon km-cart"></span>Top-up account</a></li>
+        <li data-icon="home"><a href="#views/user/call-history.html"><span class="km-icon km-recents"></span>Call History</a></li>
+        <li data-icon="home"><a href="#views/user/topup-history.html"><span class="km-icon km-calender"></span>Top-up History</a></li>
+        <li data-icon="home"><a href="#views/user/ani.html"><span class="km-icon km-home"></span>Authorised Numbers</a></li>
+
+        <li data-icon="home"><a href="#views/user/hot-number.html"><span class="km-icon km-globe"></span>Hot Number Settings</a></li>
+        <li data-icon="home"><a href="#views/user/speed-dial.html"><span class="km-icon km-speed"></span>Speed Dial Settings</a></li>
+        <li data-icon="home"><a href="#views/user/fnf.html"><span class="km-icon km-heart-light"></span>Friend &amp; Family Settings</a></li>
+        <li data-icon="home"><a href="#views/user/referral.html"><span class="km-icon km-pyramid"></span>User Referral</a></li>
+    </ul>
+
+</div>
+
+
+<style>
+
+
+    #account-view-header{
+        z-index: 220;
+        background: url(images/bgs/02.jpeg);
+        background-position: right top;
+    }
+
+
+    #account-view-header .km-navbar,
+    #account-view-header .k-toolbar,
+    #account-view-header .km-tabstrip {
+        border-style: none;
+        border-width: 0;
+    }
+
+
+    #account-view-header .km-navbar{
+        z-index: 100;
+        background: transparent;
+    }
+
+</style>

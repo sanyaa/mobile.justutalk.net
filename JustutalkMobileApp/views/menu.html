@@ -1,0 +1,192 @@
+<div data-role="view" data-title="Menu" id="menu-view" data-show="menuShow">
+    <!--Header-->
+    <div data-role="header">
+        <!--<div data-role="navbar">
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <span data-role="view-title"></span>
+        </div>-->
+    </div>
+    
+    <div class="menu-wrapper" >
+
+        <div class="memu-logo">
+            <img src="images/__logo.png" alt="justutalk.net" width="100"/>
+            <h3>It's simple...</h3>
+        </div>
+
+
+        <ul id="menu-items" class="additional-icons" data-role="listview" >
+            <li>
+                <div>
+                    <a href="#views/home.html">
+                        <div class="">
+                            <span class="km-icon km-home"></span>
+                        </div>
+                        <div>Home</div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#views/apps.html">
+                        <div class="">
+                            <span class="km-icon km-downloads"></span>
+                        </div>
+                        <div>Our Apps</div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#views/offers.html">
+                        <div class="">
+                            <span class="km-icon km-cart"></span>
+                        </div>
+                        <div>Offers</div>
+                    </a>
+                </div>
+            </li>
+           <li>
+                <div>
+                    <a href="#views/login.html">
+                        <div class="">
+                            <span class="km-icon km-contacts"></span>
+                        </div>
+                        <div>Login</div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#views/services.html">
+                        <div class="">
+                            <span class="km-icon km-settings"></span>
+                        </div>
+                        <div>Services</div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#views/about.html">
+                        <div class="">
+                            <span class="km-icon km-about"></span>
+                        </div>
+                        <div>About</div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#views/make-money.html">
+                        <div class="">
+                            <span class="km-icon km-share"></span>
+                        </div>
+                        <div>Make money</div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#views/contacts.html">
+                        <div class="">
+                            <span class="km-icon km-phone"></span>
+                        </div>
+                        <div>Contacts</div>
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <!--Footer-->
+    <div data-role="footer">
+        <!--<div data-role="tabstrip">
+            <a href="#views/home.html" data-icon="home">Home</a>
+            <a href="#views/login.html" data-icon="contacts">Login</a>
+            <a href="#tabstrip-location" data-icon="search">Location</a>
+            <a href="#tabstrip-weather" data-icon="globe">Weather</a>
+        </div>-->
+    </div>
+
+</div>
+
+
+
+<script>
+    
+    function menuShow(){
+        
+         /**
+        * Use angular_drupal module to directly check for connection. Usinng the injector, we can access function within providers 
+        * in any angular module - services, factories, rootscope and custom providers.
+        **/        
+        app.application.pane.loader.show();
+        $drupal
+            .connect()
+            .then(function(data) {
+                if (data.user.uid) {
+                    
+                    app.loginService.viewModel.kToken();                     
+                    app.loginService.viewModel.set('isLoggedIn',true);
+                    app.application.pane.loader.hide();
+                    
+                } else {
+                    
+                    app.loginService.viewModel.set('token','');                    
+                    app.loginService.viewModel.set('isLoggedIn',false);
+                    app.application.pane.loader.hide();
+                    
+                    //alert('Please login.');
+                }
+            });
+        
+    }
+    
+    
+    
+</script>
+
+<style>
+  .menu-wrapper{
+      overflow: hidden;
+  } 
+  #menu-view #menu-items {
+      /*margin: 30px;*/
+      text-align: center;
+  }
+
+  #menu-view #menu-items li div{
+      text-align: center;
+      color: #fff;
+      font-size: 0.9em;
+      margin-bottom: 4px;
+  }
+
+  #menu-view #menu-items li{
+      width: 36%;
+      border: 1px solid #fff;
+      display: inline-table;
+      margin: 5px;
+      border-radius: 8px;
+  }
+
+  #menu-view #menu-items li div a{
+      text-decoration: none;
+  }
+    
+
+  #menu-view .km-content{
+      background: url(images/lg/198.jpg) no-repeat 45% 6% transparent;
+
+  }
+
+
+  #menu-view .km-listview-wrapper {
+      margin-top: 70px;
+      display: block;
+      overflow: hidden;
+  }
+
+</style>

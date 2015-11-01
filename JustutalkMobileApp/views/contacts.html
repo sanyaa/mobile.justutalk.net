@@ -1,0 +1,298 @@
+<!--Contact View-->
+<div id="contact-view"
+     data-role="view"
+     data-title="Contact Us"     
+     data-persist="true">
+
+    <div class="">
+
+    </div>
+    <div>
+       
+
+    </div>
+
+   <!--
+   <ul data-role="listview" data-style="inset" data-type="group">
+        <li>Foo
+            <ul>
+                <li>Foo 1</li>
+                <li>Foo 2</li>
+            </ul>
+        </li>
+        <li>Bar
+            <ul>
+                <li>Bar 1</li>
+                <li>Bar 2</li>
+            </ul>
+        </li>
+    </ul>
+    -->
+
+    <div class="title-box text-center">
+        <h3 class="title">Contact Form</h3>
+    </div>
+    <form data-bind="" id="contact-form" data-id="contact-form">
+        <!--<h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>-->
+        <ul data-role="listview" data-style="inset">
+
+            <li><!--Name:-->
+                <input type="text" data-bind="value: username" placeholder="Name"/>
+            </li>
+            <li><!--Email:-->
+                <input type="email" data-bind="value: email" placeholder="Email"/>
+            </li>
+            <li><!--Subject:-->
+                    <input type="text" ata-bind="value: subject" placeholder="Subject"/>
+            </li>
+            <li><!--Message:-->
+                    <textarea style="resize: none; width: 100%; padding-left: 0;" placeholder="Message"></textarea>
+            </li>
+
+        </ul>
+
+        <input id="contact" type="submit" data-bind="" value="Submit" class="contact-button" data-role="button" />
+
+        <div style="margin: 10px 0"></div>
+
+    </form>
+
+    <div class="title-box text-center">
+        <h3 class="title">Contact Info</h3>
+    </div>
+    <ul data-role="listview" data-style="inset" id="contact-info">
+        <p>
+            <li>
+                <span><i class="fa fa-phone"></i>+44 123 456 7890</span>
+            </li>
+            <li>
+                <span><i class="fa fa-envelope"></i>info@justutalk.net</span>
+            </li>
+            <li>
+                <span><i class="fa fa-facebook"></i>info@justutalk.net</a></span>
+            </li>
+            <li>
+                <span><i class="fa fa-twitter"></i>@justutalk.net</span>
+            </li>
+            <li>
+                <span class="menu-item" href="#">
+                    <i class="fa fa-google-plus"></i><em>Google Plus</em>
+                </span>
+            </li>
+
+        </p>
+    </ul>
+
+   <!-- <p>
+        <strong>Contact Information:</strong><br>
+        <div href="tel: +123 456 7890" class="contact-call"></div>
+        <div href="sms: +123 456 7890" class="contact-text"><i class="fa fa-comments"></i>+ 123 456 7890</div>
+        <div href="mailto:name@domain.com" class="contact-mail"><i class="fa fa-envelope"></i>mail@doamin.com</div>
+        <div href="#" class="contact-facebook"><i class="fa fa-facebook"></i>enabled.labs</div>
+        <div href="#" class="contact-twitter"><i class="fa fa-twitter"></i>@iEnabled</div>
+    </p>-->
+
+    <style>
+
+
+
+        #contact-view .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            margin-right: 21px;
+            -moz-osx-font-smoothing: grayscale;
+            width: 11px;
+        }
+
+        #contact-info li span{
+            margin: 10px;
+
+        }
+
+        #contact-view .km-list>li {
+            font-size: 1.1em;
+            padding-left: 0;
+            background: transparent;
+            border-radius: 0;
+            border-width: 0;
+            border-style: none;
+            border-image: none;
+        }
+
+        #contact-info li span:nth-child(2){
+            /*border-left: 1px solid #524F4F;
+            padding-left: 20px;*/
+        }
+
+
+
+
+
+
+
+        /*******/
+        .tasklist-red {
+            border-left: solid 4px #c0392b;
+        }
+
+
+        /******/
+
+        .k-icon {
+            margin-right: 5px;
+        }
+
+        #contact-form, #contact-info {
+            margin: 0 10px 0;
+        }
+
+        #contact-form ul{
+            /*margin: 45px 0 25px;*/
+        }
+
+        #contact-form #contact, #contact-form #register {
+            background-color: rgb(140, 199, 0);
+            color: #fff;
+        }
+
+        #contact-form p {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #contact-form p a {
+            text-decoration: none;
+            font-size: .8em;
+        }
+
+        #contact-form .km-listview-wrapper {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .km-label-above, label.km-inline-field {
+            font-size: .72em;
+            line-height: 1.2em;
+        }
+        .km-label-above {
+            width: 100%;
+            font-size: .87em;
+            display: block;
+            margin-top: -1.3em;
+            padding-top: .92em;
+            padding-bottom: 3.3em;
+            margin-bottom: -2em;
+        }
+
+        .contact-button {
+            margin: 0 auto;
+            display: block;
+            width: 100%;
+            font-size: 1.1em;
+        }
+
+        #contact[type=submit]{
+            font-size: 1.1em;
+        }
+
+        #contact.km-button {
+            font-size: 1.1em;
+        }
+
+
+       /* #contact-form .km-list input[type=password],
+        #contact-form .km-list input[type=text]:not(.k-input)
+            /!*.km-ios7 .km-list input[type=search],
+            .km-ios7 .km-list input[type=number],
+            .km-ios7 .km-list input[type=tel],
+            .km-ios7 .km-list input[type=url],
+            .km-ios7 .km-list input[type=email],
+            .km-ios7 .km-list input[type=month],
+            .km-ios7 .km-list input[type=color],
+            .km-ios7 .km-list input[type=week],
+            .km-ios7 .km-list input[type=date],
+            .km-ios7 .km-list input[type=time],
+            .km-ios7 .km-list input[type=datetime],
+            .km-ios7 .km-list input[type=datetime-local],
+            .km-ios7 .km-list select:not([multiple]),
+            .km-ios7 .km-list .k-dropdown-wrap,
+            .km-ios7 .km-list textarea*!/ {
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            font-size: 1.1rem;
+            min-width: 8em;
+            border: 0;
+            padding: .4em;
+            outline: 0;
+            left: 2em;
+            background: transparent;
+        }*/
+
+        .item-list img {
+            width: 4em;
+            height: 4em;
+            width: 4rem;
+            height: 4rem;
+            float: left;
+            margin-right: 1em;
+            margin-right: 1rem;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin-bottom: 3px;
+            margin-left: 2px;
+        }
+
+
+      #contact-form .km-list input[type=text]:not(.k-input),
+      #contact-form .km-list input[type=password],
+      #contact-form .km-list input[type=search],
+      #contact-form .km-list input[type=number],
+      #contact-form .km-list input[type=tel],
+      #contact-form .km-list input[type=url],
+      #contact-form .km-list input[type=email],
+      #contact-form .km-list input[type=file],
+      #contact-form .km-list input[type=month],
+      #contact-form .km-list input[type=color],
+      #contact-form .km-list input[type=week],
+      #contact-form .km-list input[type=date],
+      #contact-form .km-list input[type=time],
+      #contact-form .km-list input[type=datetime],
+      #contact-form .km-list input[type=datetime-local],
+      #contact-form .km-list select:not([multiple]),
+      #contact-form .km-list .k-dropdown,
+      #contact-form .km-list textarea {
+          width: 100%;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          font-size: 1em;
+          position: static;
+          top: 50%;
+          line-height: normal;
+          z-index: 1;
+          right: 0;
+          margin-top: 0;
+          padding: 5px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+      }
+
+
+      #contact-form .km-widget .km-list textarea {
+          position: relative;
+          float: none;
+          margin-top: 0;
+          font-family: inherit;
+      }
+      #contact-form textarea {
+          padding: 5px;
+          float: none!important;
+      }
+
+    </style>
+
+</div>

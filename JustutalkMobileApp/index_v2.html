@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html ng-app="myDrupalApp">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.2.805/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.2.805/styles/kendo.mobile.all.min.css">
+    <!--<link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />-->
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/Style.css" rel="stylesheet" />
+    <!--<link href="styles/logoimages.css" rel="stylesheet" />-->
+    <link href="styles/logoimages.ios.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+    <script src="cordova.ios.js"></script>
+
+
+
+     <!--<script src="kendo/js/kendo.mobile.min.js"></script>-->
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+
+
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="angular/angular.js"> </script>
+    <script src="http://kendo.cdn.telerik.com/2015.2.805/js/kendo.all.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+
+    <script src="angular/angular-drupal.js"> </script>
+    <script src="angular/app.js"> </script>
+
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/location.js"></script>
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/rates.js"></script>
+        
+    <script>
+        
+        
+        //This global varibale JustutalkMobile will act as a name space for
+        //our application. Objects from other modules will be
+        //available as properties of this object.
+        //This way we lower the possibility of naming collisions
+        //when using our code in conjunction with other JavaScript libraries        
+        
+        //var JustutalkMobile = JustutalkMobile || {};
+        //console.log(app.loginService.viewModel.isLoggedIn);
+        //var app = app || {};
+        //app.setText('testing 123');
+    </script>
+    
+
+
+    <script>
+
+        var app = app;
+
+
+    </script>
+   
+</head>
+<body>
+     
+    <!--Layout-->
+    <div data-role="layout" data-id="main-layout">
+        <!--Header-->
+        <div data-role="header">
+            <div data-role="navbar">
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <span data-role="view-title"></span>
+                <a data-role="button" class="km-icon km-contacts" data-align="right" href="#user-popover" data-rel="popover"></a>
+
+            </div>
+
+
+        </div>
+		
+        <!-- application views will be rendered here -->
+
+
+        <!-- user popover  -->
+        <div id="user-popover" data-role="popover" data-popup='{ "direction": "left" }' data-use-native-scrolling="true">
+            <div data-role="view">
+                <ul data-role="listview" data-type="group" >
+
+                    <li>
+                        User
+                        <ul>
+                            <li><a href="">Login</a></li>
+                            <li><a href="">Register</a></li>
+                            <li><a href="">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Manage Accoint
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/voizage-account">Voizage Account</a></li>
+                            <li><a href="/our-apps">Mobile Applications</a></li>
+                            <li><a href="/our-apps">PC2Phone</a></li>
+                            <li><a href="/assigned-rates-plan">Current Rate Plan</a></li>
+                            <li><a href="/web-sms">Send SMS</a></li>
+                            <li><a href="/user-dashboard">User Dashboard</a></li>
+                            <li><a href="/user">My Profile</a></li>
+                            <li><a href="/manage-payment">Top-up your Account</a></li>
+                            <li><a href="/user/call-history">Call History</a></li>
+                            <li><a href="/recharge-history">Top-up History</a></li>
+                            <li><a href="/ani">Authorised Numbers</a></li>
+                            <li><a href="/manage-pin">Pc &amp; Mobile Dialer Password</a></li>
+                            <li><a href="/hot-numbers">Hot Number Settings</a></li>
+                            <li><a href="/speed-dial">Speed Dial Settings</a></li>
+                            <li><a href="/fnf-numbers">Friend &amp; Family Settings</a></li>
+                            <li><a href="/user-referrals">User Referral</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--Footer-->
+        <div data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#views/home.html" data-icon="home">Home</a>
+                <a href="#views/login.html" data-icon="contacts">Login</a>
+                <a href="#tabstrip-location" data-icon="search">Location</a>
+                <a href="#tabstrip-weather" data-icon="globe">Weather</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- application drawer and contents -->
+    <div data-role="drawer" id="appDrawer" style="width: 250px" data-title="Navigation">
+        <div data-role="header">
+          <div data-role="navbar">
+            <span data-role="view-title"></span>
+          </div>
+        </div>
+        <ul data-role="listview">
+          <li><a href="views/home.html" data-icon="home" data-transition="none">Home</a></li>
+          <li><a href="views/settings.html" data-icon="settings" data-transition="none">Settings</a></li>
+          <li><a href="views/contacts.html" data-icon="phone" data-transition="none">Contacts</a></li>
+          <li><a href="views/gallery.html" data-icon="camera" data-transition="none">Gallery</a></li>
+
+          <li><a href="views/services.html" data-icon="settings" data-transition="none">Services</a></li>
+          <li><a href="views/apps.html" data-icon="downloads" data-transition="none">Our Apps</a></li>
+          <li><a href="views/rates.html" data-icon="downloads" data-transition="none">Rates</a></li>
+
+          <li><a href="views/about.html" data-icon="about" data-transition="none">About</a></li>
+          <li><a href="views/offers.html" data-icon="cart" data-transition="none">Offers</a></li>
+          <li><a href="views/make-money.html" data-icon="share" data-transition="none">Make Money</a></li>
+          <li><a href="views/menu.html" data-icon="camera" data-transition="none">Menu</a></li>
+
+
+        </ul>
+        <ul data-role="listview" data-style="inset" data-type="group">
+            <li>
+                Manage Accoint
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/voizage-account">Voizage Account</a></li>
+                    <li><a href="/our-apps">Mobile Applications</a></li>
+                    <li><a href="/our-apps">PC2Phone</a></li>
+                    <li><a href="/assigned-rates-plan">Current Rate Plan</a></li>
+                    <li><a href="/web-sms">Send SMS</a></li>
+                    <li><a href="/user-dashboard">User Dashboard</a></li>
+                    <li><a href="/user">My Profile</a></li>
+                    <li><a href="/manage-payment">Top-up your Account</a></li>
+                    <li><a href="/user/call-history">Call History</a></li>
+                    <li><a href="/recharge-history">Top-up History</a></li>
+                    <li><a href="/ani">Authorised Numbers</a></li>
+                    <li><a href="/manage-pin">Pc &amp; Mobile Dialer Password</a></li>
+                    <li><a href="/hot-numbers">Hot Number Settings</a></li>
+                    <li><a href="/speed-dial">Speed Dial Settings</a></li>
+                    <li><a href="/fnf-numbers">Friend &amp; Family Settings</a></li>
+                    <li><a href="/user-referrals">User Referral</a></li>
+                </ul>
+            </li>
+            <li>Sources
+                <ul>
+                    <li><a href="#views/tmp/popover.html" data-icon="globe" data-transition="none">popover</a></li>
+                    <li><a href="#views/tmp/modal.html" data-icon="globe" data-transition="none">modal</a></li>
+                    <li><a href="#views/tmp/pane.html" data-icon="globe" data-transition="none">pane</a></li>
+                    <li><a href="#views/tmp/flexboxes.html" data-icon="globe" data-transition="none">flexboxes</a></li>
+                    <li><a href="#views/tmp/actionsheet.html" data-icon="globe" data-transition="none">ActionSheet</a></li>
+                    <li><a href="#views/tmp/buttongroup.html" data-icon="globe" data-transition="none">buttongroup</a></li>
+                    <li><a href="#views/tmp/buttongroup-1.html" data-icon="globe" data-transition="none">buttongroup-1</a></li>
+                    <li><a href="#views/tmp/form.html" data-icon="globe" data-transition="none">form</a></li>
+                    <li><a href="#views/tmp/collapsible.html" data-icon="globe" data-transition="none">collapsible</a></li>
+                    <li><a href="#views/tmp/node.html" data-icon="globe" data-transition="none">node</a></li>
+                    <li data-icon="inbox"><a href="#views/user.html" data-transition="none">User</a></li>
+                    <li data-icon="star"><a href="#views/UserAccount.html" data-transition="none">User Account</a></li>
+                </ul>
+            </li>
+        </ul>
+      </div>
+    
+    
+    <!--Home View-->
+    <div id="tabstrip-home"
+        data-role="view"
+        data-title="Home">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <a id="skin-change" data-role="button" data-align="right" data-click="app.changeSkin">Flat</a>
+            </div>
+        </header>
+
+        <h3>Welcome!</h3>
+        <p>
+            Telerik AppBuilder&trade; enables you to build cross-platform device applications regardless of your
+            development platform by combining the convenience of a local development toolset with the
+            power and flexibility of the cloud.
+        </p>
+        <div class="welcome-image"></div>
+    </div>
+
+    <!--Login View-->
+    <div id="login-view"
+        data-role="view"
+        data-title="Login"
+        data-transition="overlay:up"
+        data-persist="true"
+        data-model="app.loginService.viewModel">
+
+        <div class="memu-logo">
+            <img src="images/__logo.png" alt="justutalk.net" width="100"/>
+            <h3 style="color: #000">It's simple...</h3>
+        </div>
+        <div>
+            <h3 data-bind="visible: isLoggedIn">Welcome, <span data-bind="text: username"></span>!</h3>
+            <input id="logout" type="submit" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" value="Logout" class="login-button" />                      
+            
+        </div>
+        <form data-bind="events: { keyup: checkEnter }" id="login-form" data-id="login-form">
+            <!--<h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>-->
+            <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+                <li>
+                <input type="text" data-bind="value: username" placeholder="username"/>
+                <span data-icon="contacts"></span>
+            </li>
+                <li>
+                    <input type="text" data-bind="value: username" placeholder="username"/>
+                    <span data-icon="contacts"></span>
+                </li>
+                <li>
+                    <input type="password" data-bind="value: password" placeholder="password"/>
+                    <span data-icon="password"></span>
+                </li>
+
+
+
+            </ul>
+            <input id="login" type="submit" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn"
+                   value="Login" class="login-button" />
+
+            <input id="register" type="submit" data-role="button" data-bind="click: onRegister, invisible: isLoggedIn"
+                   value="Register" class="login-button" />
+            <p><a href="#" data-transition="none">Forgot your password?</a></p>
+        </form>
+        
+        <style>
+
+            #icons ul
+            {
+                margin: 20px auto 0;
+                display: block;
+                text-align: left;
+                white-space: normal;
+            }
+
+            #icons ul li
+            {
+                display: inline-block;
+                vertical-align: middle;
+                padding: 10px 0;
+                list-style: none;
+                font-size: 12px;
+                min-width: 140px;
+            }
+            .k-icon {
+                margin-right: 5px;
+            }
+
+            #login-form {
+                margin: 75px 15px 0;
+            }
+
+            #login-form ul{
+                margin: 45px 0 25px;
+            }
+
+            #login-form #login, #login-form #register {
+                background-color: rgb(140, 199, 0);
+                color: #fff;
+            }
+
+            #login-form p {
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            #login-form p a {
+                text-decoration: none;
+                font-size: .8em;
+            }
+
+            #login-form .km-listview-wrapper {
+                width: 79%;
+                margin: 0 auto;
+            }
+
+            #login-form .km-list input[type=password],
+            #login-form .km-list input[type=text]:not(.k-input)
+            /*.km-ios7 .km-list input[type=search],
+            .km-ios7 .km-list input[type=number],
+            .km-ios7 .km-list input[type=tel],
+            .km-ios7 .km-list input[type=url],
+            .km-ios7 .km-list input[type=email],
+            .km-ios7 .km-list input[type=month],
+            .km-ios7 .km-list input[type=color],
+            .km-ios7 .km-list input[type=week],
+            .km-ios7 .km-list input[type=date],
+            .km-ios7 .km-list input[type=time],
+            .km-ios7 .km-list input[type=datetime],
+            .km-ios7 .km-list input[type=datetime-local],
+            .km-ios7 .km-list select:not([multiple]),
+            .km-ios7 .km-list .k-dropdown-wrap,
+            .km-ios7 .km-list textarea*/ {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                font-size: 1.1rem;
+                min-width: 8em;
+                border: 0;
+                padding: .4em;
+                outline: 0;
+                left: 2em;
+                background: transparent;
+            }
+
+           /* element.style {
+                display: inline-table;
+                float: right;
+                margin: 16px 10px 0 0;
+            }*/
+
+            .item-list img {
+                width: 4em;
+                height: 4em;
+                width: 4rem;
+                height: 4rem;
+                float: left;
+                margin-right: 1em;
+                margin-right: 1rem;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                margin-bottom: 3px;
+                margin-left: 2px;
+            }
+
+        </style>
+        
+    </div>
+
+    <!--Location View-->
+    <div id="tabstrip-location"
+        data-role="view"
+        data-title="Location"
+        data-init="app.locationService.initLocation"
+        data-show="app.locationService.show"
+        data-hide="app.locationService.hide"
+        data-model="app.locationService.viewModel"
+        data-stretch="true">
+
+        <div id="map-canvas" class="map" data-bind="visible: isGoogleMapsInitialized"></div>
+
+        <div id="no-map" data-bind="invisible: isGoogleMapsInitialized">
+            <h3>Location requires internet connection to display the map.</h3>
+        </div>
+        <div id="map-search-wrap" class="map-tools" data-bind="visible: isGoogleMapsInitialized, invisible: hideSearch">
+            <div>
+                <button id="map-navigate-home" class="map-tools-button home" data-bind="click: onNavigateHome"></button>
+                <input id="map-address" type="search" class="map-tools-input" data-bind="value: address" placeholder="Address" />
+                <button id="map-search" class="map-tools-button search" data-bind="click: onSearchAddress"></button>
+            </div>
+        </div>
+    </div>
+
+    <!--Weather View-->
+    <div id="tabstrip-weather"
+        data-role="view"
+        data-title="Weather"
+        data-model="app.weatherService.viewModel">
+
+        <ul data-role="listview" data-style="inset"
+            data-bind="source: weatherDataSource"
+            data-template="weather-forecast-template">
+        </ul>
+    </div>
+
+    <!--Weather forecast template-->
+    <script id="weather-forecast-template" type="text/x-kendo-tmpl">
+        <div class="w-item-template">
+            <span class="w-icon ${image}"></span>
+            <h4 class="w-date">${day}</h4>
+            <div class="w-temp">
+                <span>${highTemperature}<sup>&deg;</sup></span>
+                <span>${lowTemperature}<sup>&deg;</sup></span>
+            </div>
+        </div>
+    </script>
+   
+      
+    
+    <script>
+    
+      document.addEventListener('deviceready', function (window) {
+
+
+
+          //app.drupal.setText('77777 88888');
+          //console.log(app);
+
+
+            //JustutalkMobile.main.initializeApp();
+
+           /* var app = JustutalkMobile.app;
+            app.getApplication();
+           	app.setText('testing 123');
+            //app.login('admin', 'H4der222');
+
+
+          	// Make controller Ctrl in module Foo
+			app.controller('Ctrl', function($scope) {
+            	$scope.greet=function(){
+                        alert('hello');
+                    }
+
+            });
+
+
+             app.controller('CustomersController', ['$scope', function ($scope) {
+					$scope.greet=function(){
+                        alert('hello');
+                    }
+                    //Controller code goes here
+                 }]);*/
+      });
+    
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,44 @@
+<div data-role="view">
+    <a href="#foo" data-rel="modalview" data-role="button">Foo</a>
+</div>
+
+<div data-role="modalview" id="foo" style="width:90%; height: 50%" class="jt-model"  data-init="onInit">
+    <div data-role="header" class="jt-model-header">
+        <div data-role="navbar" class="jt-model-navbar">
+            <span data-role="view-title">Model</span>
+            <a data-align="right" data-click="closeModalView" data-role="button">X</a>
+        </div>
+    </div>
+
+    <ul data-role="listview">
+        <li>Foo1</li>
+    </ul>
+    <ul data-role="listview">
+        <li>Foo2</li>
+    </ul>
+
+    <div data-role="footer" class="jt-model-footer">
+        <div data-role="navbar">
+            <a data-align="right" data-role="button">Details</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function closeModalView(e) {
+        // find the closest modal view, relative to the button element.
+        var modalView = e.sender.element.closest("[data-role=modalview]").data("kendoMobileModalView");
+        modalView.close();
+    }
+
+    function onInit(e) {
+        console.log(e.sender);
+    }
+</script>
+
+<style>
+
+    .k-animation-container1{
+        width: 90%;
+    }
+</style>
