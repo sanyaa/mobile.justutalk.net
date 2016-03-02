@@ -1,2 +1,0 @@
-# JustutalkMobileApp
-JustutalkMobileApp
