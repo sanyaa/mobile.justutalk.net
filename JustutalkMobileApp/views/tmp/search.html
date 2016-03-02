@@ -1,0 +1,212 @@
+<div id="example" data-role="view" data-show="initSearch" data-title="Search">
+
+    <div class="box wide">
+        <h4>Configure</h4>
+        <ul class="options">
+            <li>
+                <label for="page">Page:</label>
+                <input type="text" value="1" id="page" class="k-textbox" />
+            </li>
+            <li>
+                <label for="order">Order by:</label>
+                <select id="order">
+                    <option value="tid">ID</option>
+                    <option value="name">Name</option>
+                    <option value="ststus">status</option>
+                </select>
+            </li>
+            <li>
+                <label for="dir">Direction:</label>
+                <select id="dir">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </li>
+            <li>
+                <button class="k-button" id="apply" style="margin-left: 74px;">Apply</button>
+            </li>
+        </ul>
+    </div>
+
+
+    <div data-role="scroller" style="width: 95%; height: 400px">
+
+            <!--<ul id="products" data-pull-to-refresh="true"
+                data-template="template"
+                data-auto-bind="true"
+                data-endless-scroll="true">
+
+            </ul>-->
+
+            <ul id="products" data-source="dataSource"
+                data-role="listview" data-template="foo-template"
+                data-auto-bind="true" data-pull-to-refresh="true"
+                data-endless-scroll="true">
+
+            </ul>
+
+    </div>
+
+    <script id="template" type="text/x-kendo-template">
+        <li class="product">
+            <h3>#:name#</h3>
+            <p>#:kendo.toString(tid, "c")#</p>
+        </li>
+    </script>
+
+    <script type="text/x-kendo-template" id="foo-template">
+        #: name # - #: tid #
+    </script>
+
+    <script>
+        //function initSearch() {
+
+            //alert('init search');
+            // create a template using the above definition
+            //var template = kendo.template($("#template").html());
+
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: "http://excitenet.co.uk/users-json/jusutalk-mobile-test.json",
+                    dataType: "json"
+                },
+                batch: true,
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 20,
+                sort: {
+                    field: "tid",
+                    dir:"asc"
+                },
+                schema: {
+                   /* total: function() {
+                        return 32;
+                    },*/
+                    total: "total",
+                    data: "data",
+                    model: {
+                        id: "tid",
+                        fields: {
+                            tid: { editable: false, nullable: true },
+                            name: { type: "string" },
+                            status: { type: "number" },
+                            email: { type: "string" }
+                        }
+                    }
+                }/*,
+                change: function() { // subscribe to the CHANGE event of the data source
+                    // update the max attribute of the "page" input
+                    $("#page").attr("max", this.totalPages());
+                    $("#products").html(kendo.render(template, this.view()));
+                }*/
+            });
+
+            // read data from the remote service
+            //dataSource.read();
+
+            $("#apply").on("click", function() {
+                var page = parseInt($("#page").val(), 10);
+
+                // validate the page - it must be a number within the allowed range
+                if (isNaN(page) || page < 1 || page > dataSource.totalPages()) {
+                    alert(kendo.format("Page must be a number between 1 and {0}", dataSource.totalPages()));
+                    return;
+                }
+
+                dataSource.filter( { 
+                    field: "name", 
+                    operator: "startswith", 
+                    value: "Joh" 
+                });
+                dataSource.fetch();
+                dataSource.read();
+                // query the remote service
+                /*dataSource.query({
+                    //page: page,
+                    pageSize: 20,
+                    sort: {
+                        field: "tid",
+                        dir:"asc"
+                    },
+                    filter: {
+                        field: "name",
+                        operator: "startswith",
+                        value: "Joh"
+                    }/!*,
+                    filter: [
+                        // leave data items which are "Beverage" and not "Coffee"
+                        { field: "category", operator: "eq", value: "Beverages" },
+                        { field: "name", operator: "neq", value: "Coffee" }
+                    ]*!/
+                });*/
+            });
+
+            //initialize dropdownlist components
+            $("#order").kendoDropDownList();
+            $("#dir").kendoDropDownList();
+        //}
+
+
+    </script>
+
+    <style>
+        .options label {
+            display: inline-block;
+            width: 70px;
+        }
+        .product {
+            float: left;
+            position: relative;
+            width: 111px;
+            height: 170px;
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        .product img {
+            width: 110px;
+            height: 110px;
+        }
+        .product h3 {
+            margin: 0;
+            padding: 3px 5px 0 0;
+            max-width: 96px;
+            overflow: hidden;
+            line-height: 1.1em;
+            font-size: .9em;
+            font-weight: normal;
+            text-transform: uppercase;
+            text-align: center;
+            color: #999;
+        }
+        .product p {
+            /*visibility: hidden;*/
+        }
+        .product:hover p {
+            visibility: visible;
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            line-height: 110px;
+            vertical-align: middle;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0,0,0,0.75);
+            transition: background .2s linear, color .2s linear;
+            -moz-transition: background .2s linear, color .2s linear;
+            -webkit-transition: background .2s linear, color .2s linear;
+            -o-transition: background .2s linear, color .2s linear;
+        }
+        #products:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+    </style>
+</div>

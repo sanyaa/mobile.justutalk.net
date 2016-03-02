@@ -1,0 +1,78 @@
+<div data-role="view" data-title="Checkout::Confirmation" data-layout="second-layout">
+
+
+  <div class="hero">
+    <i class="fa fa-cart-plus"></i>
+    <span>Recharge</span>
+  </div>
+
+
+  <div class="divider-green"></div>
+
+  <form id="checkout-form" data-id="checkout-form" class="checkout-form">
+      <div>
+          <div class="jt-round jt-center">
+              <i class="fa fa-check jt-tick-large"></i>
+          </div>
+      </div>
+
+      <h1>Checkout Complete</h1>
+
+
+      <fieldset>
+
+          <article data-bind="invisible: isLoggedIn">
+
+              <p>Thank you for doing business with Justutalk.net.  </p>
+              <p>Your topup has been successful and your order id id: #00000. Please check your email for
+              details of this transaction.</p>
+              <p>Your account is recharged by: £5.00</p>
+
+          </article>
+
+      </fieldset>
+
+      <input id="contact" type="button" data-bind="click: homePage, invisible: isLoggedIn"
+             value="Back to home page" class="contact-button" data-role="button" />
+
+      <div style="margin: 10px 0"> </div>
+
+
+  </form>
+
+</div>
+
+<script>
+
+
+  function init_checkout_complete(){
+
+
+  }
+
+</script>
+
+<style>
+
+.jt-tick-large{
+    border: 1px solid;
+    border-radius: 50%;
+    font-size: 3em;
+    color: #8CC700;
+}
+
+.checkout-form h1{
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 1.8em;
+    color: #8CC700;
+}
+
+.checkout-form article{
+    margin: 15px 0;
+}
+
+
+
+</style>

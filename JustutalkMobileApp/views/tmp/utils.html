@@ -3,27 +3,27 @@
     <p><span data-bind="text: token"></span></p>
 
     <p><a data-role="button" data-align="left" data-icon="globe" data-click="ngLogin">ngLogin</a></p>
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="ngLogout">ngLogout</a></p>
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="ngToken">ngToken</a></p>
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="ngConnect">ngConnect</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kGetNode">kGetNode</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kDeleteNode">kDeleteNode</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kUpdateNode">kUpdateNode</a></p>
 
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="kLogin">kLogin</a></p>
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="kLogout">kLogout</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: onLogin">kLogin</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: onLogout">kLogout</a></p>
     <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kToken">kToken</a></p>
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="kConnect">kConnect</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kConnect">kConnect</a></p>    
     <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kCreateNode">kCreateNode</a></p>
-    
-    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kCreateNode1">kCreateNode1</a></p>
-    
-    <p><a data-role="button" data-align="left" data-icon="globe" data-click="kCreateNode1">kCreateNode 1</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kCreateOrder">kCreateOrder</a></p>
+    <p><a data-role="button" data-align="left" data-icon="globe" data-bind="click: kUpdateOrder">kUpdateOrder</a></p>
+
+    <p>
+        <a data-role="button" data-align="left" data-icon="globe" data-click="kCreateTest">kCreateTest</a>
+    </p>
 </div>
 
 
 <script>
 
-    function ngLogin(){
-        app.drupal.login('admin','H4der222');
-    }
+
 
     function ngToken() {
         var t = app.drupal._getToken();
@@ -263,39 +263,66 @@
         alert("sync complete");
     }
 
-    function kCreateNode1(){
-        //var token = app.drupal.token();
-        
-        var token = app.loginService.viewModel.token;  
+    function kCreateTest(){
+
+        crudServiceBaseUrl = "http://excitenet.co.uk/users-json";
+        //var token = app.loginService.viewModel.get("token").trim();
     
-    alert(token);
-        
+        //alert(token);
+        var token = app.loginService.viewModel.token;
         var dataSource = new kendo.data.DataSource({
             //batch: true,
             transport: {
-                create: {
-                    url: "http://excitenet.co.uk/users-json/test.json",
-                    dataType: "json", //"jsonp" is required for cross-domain requests; use "json" for same-domain requests
-                    type: "POST",
-                    beforeSend: function(xhr){
-                        xhr.setRequestHeader('X-CSRF-Token', token);
-                        // xhr.setRequestHeader('Content-Type','application/json');
 
-                    }
-                }/*,
+                create: function(options) {
+                    // make JSONP request to http://demos.telerik.com/kendo-ui/service/products/create
+                    $.ajax({
+                        url: crudServiceBaseUrl + "/test.json",
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-CSRF-Token', token);
+                        },
+                        dataType: "json", // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
+                        // send the created data items as the "models" service parameter encoded in JSON
+                        data: {
+                            models: kendo.stringify(options.data.models)
+                        },
+                        success: function(result) {
+                            // notify the data source that the request succeeded
+                            options.success(result);
+                        },
+                        error: function(result) {
+                            // notify the data source that the request failed
+                            options.error(result);
+                        }
+                    });
+                }
+                /*,
                 parameterMap: function(data) {
                     return { models: kendo.stringify(data.models) };
                 }*/
             },
+            batch: true,
+            pageSize: 20,
             schema: {
-                //model: { id: "nid" }
+                model: {
+                    id: "tid",
+                    fields: {
+                        tid: { editable: false, nullable: true, type: "number"},
+                        name: { type: "string" },
+                        status: { type: "number" },
+                        email: { type: "string" }
+                    }/**/
+                },
+                data: function (result) {
+                    //console.log(result);
+                    //obj = angular.fromJson(result);
+
+                    return result;
+                }
             }
         });
         dataSource.bind("sync", dataSource_sync);
-        dataSource.add( { "name":"article",
-            "email":"Page submitted via iphone",
-            "status": 5
-        } );
+        dataSource.add({"name":"ff","status":'2.0',"email":"wewew"});
         dataSource.sync();
     }
 

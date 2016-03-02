@@ -1,5 +1,9 @@
 /* IMAGES */
-.km-drawer-button:before, .km-drawer-button:after  { content: "\E077"; }
+.km-drawer-button:before, .km-drawer-button:after  {
+    content: "\E077";
+    font-size: 1.2em;
+    color: rgba(107, 106, 106, 0.8);
+}
 .welcome-image {
     background-image: url(../styles/images/appbuilder.png);
     background-repeat: no-repeat;
@@ -152,12 +156,16 @@
 
 /*******
 JUSTUTALK SPECIFICS
-CUSTOM BUTTONS STYLES
-                ********/
+********/
+
+
+/** CUSTOM BUTTONS STYLES**/
+
 
 
 .hero {
     display: block;
+    overflow: hidden;
     margin: 0;
     padding-left: .5em;
     height: 110px;
@@ -174,6 +182,7 @@ CUSTOM BUTTONS STYLES
 
 .hero2 {
     display: block;
+    overflow: hidden;
     margin: 0;
     padding: 1em;
     height: 140px;
@@ -287,93 +296,6 @@ CUSTOM BUTTONS STYLES
     font-size: 1em;
     font-weight: normal;
 }
-.bg-gray{
-    background: #fdfdfd;
-}
-.bg-red{
-    background: red;
-}
-.bg-green-light {
-    background: rgb(140, 199, 0);
-}
-
-.bg-green-dark {
-    background: rgb(78, 117, 0);;
-}
-
-.bg-green-darker {
-    background: rgb(34, 51, 0);
-}
-
-
-
-/**********borders**************/
-.thick-border-top-green{
-    border-top: 5px solid green;
-}
-
-.thick-border-top-blue{
-    border-top: 5px solid blue;
-}
-
-.thick-border-top-red{
-    border-top: 5px solid red;
-}
-
-.thick-border-left-green{
-    border-top: 5px solid green;
-}
-
-.thick-border-left-blue{
-    border-top: 5px solid blue;
-}
-.thick-border-left-red{
-    border-top:5px solid red;
-}
-
-
-
-.thin-border-left-white{
-    border-left: 1px solid white;
-}
-.thin-border-right-white{
-    border-right: 1px solid white;
-}
-
-.thin-border-bottom-white{
-    border-bottom: 1px solid white;
-}
-.thin-border-top-white{
-    border-top: 1px solid white;
-}
-
-
-.divider-green{
-    background-color: green;
-    height: 3px;
-    margin: 2px 0;
-}
-.divider-blue{
-    border-top: 5px solid blue;
-}
-
-.divider-red{
-    border-top: 5px solid red;
-}
-
-
-.no-border-right {
-    border-right: 0;
-}
-.no-border-bottom {
-    border-bottom: 0;
-}
-.no-border-left {
-    border-left: 0;
-}
-.no-border-top {
-    border-top: 0;
-}
 
 
 
@@ -405,19 +327,14 @@ CUSTOM BUTTONS STYLES
     padding: .6em .8em .195em;
     line-height: 1em;
 }
+
+
 /********** Ions *********************/
 .km-detail .km-icon,
 .km-button .km-icon,
 .km-list .km-icon,
 .km-ios .km-button .km-icon {
-    width: 1em;
-    height: 1em;
-    font-size: 1em;
-    margin-left: -0.3em;
-    margin-right: 1em;
-    vertical-align: baseline;
-    display: inline-block;
-    background-size: auto 100%;
+    /*margin-right: 1em;   */
 }
 
 #menu-items .km-icon
@@ -481,6 +398,21 @@ CUSTOM BUTTONS STYLES
     background-image: -webkit-linear-gradient(bottom, #223200 0%, #8CC700 100%);
     background-image: -ms-linear-gradient(bottom, #223200 0%, #8CC700 100%);
     background-image: linear-gradient(to bottom, #223200 0%, #8CC700 100%);
+}
+
+.green-gradient-bg{
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.16, #0B752D),
+            color-stop(1, #A6ED76)
+    );
+    background-image: -o-linear-gradient(top, #0B752D 16%, #A6ED76 100%);
+    background-image: -moz-linear-gradient(top, #0B752D 16%, #A6ED76 100%);
+    background-image: -webkit-linear-gradient(top, #0B752D 16%, #A6ED76 100%);
+    background-image: -ms-linear-gradient(top, #0B752D 16%, #A6ED76 100%);
+    background-image: linear-gradient(to top, #0B752D 16%, #A6ED76 100%);
 }
 
 body {
@@ -570,6 +502,16 @@ body {
 
 .title-box .title.text-white{
     color: #fff;
+}
+
+
+/********  Title  ********/
+/*
+    title style 1
+    */
+
+h1.title{
+    font-size:1.5em;
 }
 
 
@@ -742,15 +684,260 @@ a.round-widget .widget-icon:hover {
 }
 
 
+/*********** Checkout **************/
+
+#checkout-form #exp-month-year>input,
+#checkout-form #card-csc>input{
+    width:47%;
+}
+#checkout-form #card-csc span{
+    font-size:0.7em;
+}
+.card-csc{
+    margin-top:1em;
+}
+
+#checkout-form .k-dropdown {
+    text-align: left;
+}
+
+
+fieldset {
+    border: .2em solid #eee;
+    margin: .5em;
+}
+
+fieldset legend{
+    text-align: left;
+    font-weight: 700;
+    padding: 0 5px;
+}
+
+fieldset legend span {
+    background-color: #eee;
+    text-align: center;
+    width: 25px;
+    padding: 0 5px;
+    display: inline-block;
+}
+
+.k-textbox,
+.k-autocomplete,
+.k-dropdown-wrap,
+.k-picker-wrap,
+.k-numeric-wrap {
+    border-width: 1px;
+    border-style: solid;
+    padding: 0 1.9em 0 0;
+    border-color: #eee;
+    height: 2em;
+}
+.topup-amounts{
+    border-color: #999;
+}
+
+#topup-view .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 21px;
+    -moz-osx-font-smoothing: grayscale;
+    width: 11px;
+}
+
+#contact-info li span{
+    margin: 10px;
+
+}
+
+#checkout-form .km-list>li {
+    font-size: 1em;
+    padding: .5em .3em;
+    background: transparent;
+    border-radius: 0;
+    border-width: 0;
+    border-style: none;
+    border-image: none;
+}
+
+#checkout-form .k-dropdown .k-input{
+    font-size: 1em;
+}
+
+#topup-view .k-textbox>input,
+#topup-view .k-autocomplete .k-input,
+#topup-view .k-picker-wrap .k-input,
+#topup-view .k-numeric-wrap .k-input,
+#topup-view .k-dropdown-wrap .k-input,
+#topup-view .k-selectbox .k-input {
+    height: 1.65em;
+    line-height: 1.65em;
+    /*padding: .177em 0;
+    text-indent: .33em;
+    border: 0;
+    margin: 0;*/
+}
+
+#topup-view .k-textbox,
+#topup-view .k-autocomplete,
+#topup-view .k-dropdown-wrap,
+#topup-view .k-picker-wrap,
+#topup-view .k-numeric-wrap {
+    border-width: 1px;
+    border-style: solid;
+    padding: 0 0 0 0;
+    border-color: #eee;
+    height: 4em;
+}
+
+/*
+
+.k-icon {
+    margin-right: 5px;
+}
+*/
+
+#checkout-form, #contact-info {
+    margin: 0 10px 0;
+}
+
+#checkout-form ul{
+    /*margin: 45px 0 25px;*/
+}
+
+#checkout-form #contact, #checkout-form #register {
+    background-color: rgb(140, 199, 0);
+    color: #fff;
+}
+
+#checkout-form p {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#checkout-form p a {
+    text-decoration: none;
+    font-size: .8em;
+}
+
+#checkout-form .km-listview-wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.km-label-above, label.km-inline-field {
+    font-size: .72em;
+    line-height: 1.2em;
+}
+.km-label-above {
+    width: 100%;
+    font-size: .87em;
+    display: block;
+    margin-top: -1.3em;
+    padding-top: .92em;
+    padding-bottom: 3.3em;
+    margin-bottom: -2em;
+}
+
+.contact-button {
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+#contact[type=submit]{
+    font-size: 1.1em;
+}
+
+#contact.km-button {
+    font-size: 1.1em;
+}
+
+
+
+.item-list img {
+    width: 4em;
+    height: 4em;
+    width: 4rem;
+    height: 4rem;
+    float: left;
+    margin-right: 1em;
+    margin-right: 1rem;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-bottom: 3px;
+    margin-left: 2px;
+}
+
+
+#checkout-form .km-list input[type=text]:not(.k-input),
+#checkout-form .km-list input[type=password],
+#checkout-form .km-list input[type=search],
+#checkout-form .km-list input[type=number],
+#checkout-form .km-list input[type=tel],
+#checkout-form .km-list input[type=url],
+#checkout-form .km-list input[type=email],
+#checkout-form .km-list input[type=file],
+#checkout-form .km-list input[type=month],
+#checkout-form .km-list input[type=color],
+#checkout-form .km-list input[type=week],
+#checkout-form .km-list input[type=date],
+#checkout-form .km-list input[type=time],
+#checkout-form .km-list input[type=datetime],
+#checkout-form .km-list input[type=datetime-local],
+#checkout-form .km-list select:not([multiple]),
+#checkout-form .km-list .k-dropdown,
+#checkout-form .km-list textarea {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 1em;
+    position: static;
+    top: 50%;
+    line-height: normal;
+    z-index: 1;
+    right: 0;
+    margin-top: 0;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+#checkout-form .km-widget .km-list textarea {
+    position: relative;
+    float: none;
+    margin-top: 0;
+    font-family: inherit;
+}
+#checkout-form textarea {
+    padding: 5px;
+    float: none!important;
+}
+
+#month-year-csc input{
+    width:30%
+}
+
+.km-ios7 .km-view .km-content .km-button {
+    background-color: rgb(140, 199, 0);
+    color: #fff;
+}
+
+
 /********* **********/
 a.km-listview-link:hover {
-    background-color: rgba(140, 199, 0);
+    background-color: rgba(140, 199, 0, 1);
 }
 
 /*********** Font Awesome **************/
 .fa {
-    margin-right: 1em;
-    margin-left: -0.3em;
+    /*margin-right: 1em;
+    margin-left: -0.3em;*/
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;

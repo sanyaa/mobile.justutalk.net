@@ -1,0 +1,73 @@
+<div data-role="view" id="gauge-view" data-title="Profile"
+     data-show="showGauge">
+
+    <img src="images/people/eduardo.jpg" class="jt-km-thumbnail" style="width: 10em; height: 10em; margin: 2em auto; display: block; float: none;">
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+
+    <h1 class="line-wrap single"><span>This is a title</span></h1>
+
+    <section>
+       <!-- <div id="gauges_chart_div" style="width: 400px; height: 120px;"></div>-->
+
+    </section>
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+    <div class="ui segment">
+
+    <div id="gauges_chart_div"  class="jt-chart">testing</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+    //google.charts.load('current', {'packages':['gauge']});
+
+    function showGauge() {
+        if(typeof google.charts == 'undefined'){
+            // Load Charts and the corechart and barchart packages.
+            google.charts.load('current', {'packages':['gauge', 'corechart']});
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    }
+
+    function drawChart() {
+
+        var gauges_data= google.visualization.arrayToDataTable([
+            ['Label', 'Value'],
+            ['Memory', 80],
+            ['CPU', 55],
+            ['Network', 68]
+        ]);
+
+        var gauges_options = {
+            width: 300, height: 120,
+            redFrom: 90, redTo: 100,
+            yellowFrom:75, yellowTo: 90,
+            minorTicks: 5
+        };
+
+        var gauges_chart = new google.visualization.Gauge(document.getElementById('gauges_chart_div'));
+
+        gauges_chart.draw(gauges_data, gauges_options);
+
+        setInterval(function() {
+            gauges_data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+            gauges_chart.draw(gauges_data, gauges_options);
+        }, 13000);
+        setInterval(function() {
+            gauges_data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+            gauges_chart.draw(gauges_data, gauges_options);
+        }, 5000);
+        setInterval(function() {
+            gauges_data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+            gauges_chart.draw(gauges_data, gauges_options);
+        }, 26000);
+    }
+
+
+</script>

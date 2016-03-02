@@ -28,6 +28,7 @@
             that.set("weatherDataSource", dataSource);
         }
     });
+    
 
     app.weatherService = {
         viewModel: new WeatherViewModel()

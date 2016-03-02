@@ -1,63 +1,33 @@
-<div data-role="view" data-title="About" data-model="APP.models.settings" class="content-bg-green">
+<div data-role="view" data-title="About" data-model="app.contentService.viewModel" class="" data-init="init_about_us">
 
-    <!--Header-->
-   <!-- <div data-role="header">
-        <div data-role="navbar">
-            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
-            <span data-role="view-title"></span>
-        </div>
-
-    </div>-->
     <div class="hero">ABOUT US</div>
 
-    <h1 data-bind="html: title" class="jt-center"></h1>
+    <ul id="about-content" class="mobile-content km-widget km-listview km-list">
 
-    <ul id="menu-items" class="additional-icons " data-role="listview" >
-        <div class="round-widget-wrapper jt-center">
-            <a href="#views/home.html" class="round-widget">
-                <div class="widget-icon">
-                    <span class="km-icon km-home"></span>
-                </div>
-                <div class="widget-text">Home</div>
-            </a>
-            <a href="#views/home.html" class="round-widget">
-                <div class="widget-icon">
-                    <span class="km-icon km-home"></span>
-                </div>
-                <div class="widget-text">Home</div>
-            </a>
-            <a href="#views/home.html" class="round-widget">
-                <div class="widget-icon">
-                    <span class="km-icon km-home"></span>
-                </div>
-                <div class="widget-text">Home</div>
-            </a>
-        </div>
 
-        <div class="round-widget-wrapper jt-center">
-            <a href="#views/home.html" class="round-widget">
-                <div class="widget-icon">
-                    <span class="km-icon km-home"></span>
-                </div>
-                <div class="widget-text">Home</div>
-            </a>
-            <a href="#views/home.html" class="round-widget">
-                <div class="widget-icon">
-                    <span class="km-icon km-home"></span>
-                </div>
-                <div class="widget-text">Home</div>
-            </a>
-            <a href="#views/home.html" class="round-widget">
-                <div class="widget-icon">
-                    <span class="km-icon km-home"></span>
-                </div>
-                <div class="widget-text">Home</div>
-            </a>
-        </div>
     </ul>
 
-
 </div>
+
+<!--method 1-->
+<script type="text/x-kendo-template" id="aboutTemplate">
+
+    <li>#= body #</li>
+
+</script>
+
+
+
+<script type="text/javascript">
+
+    function init_about_us() {
+        app.contentService.viewModel.getMobileContent(1452, "aboutTemplate", "about-content")
+    }
+
+
+
+</script>
+
 
 <style>
     .hero {
@@ -76,42 +46,12 @@
         background-size: 100% auto;
     }
 
-    /*.round-widget-wrapper{
-        display: block;
-        overflow: hidden;
-        margin: 10px auto;
+    .mobile-content{
+        margin: 15px 0 10px;
     }
 
-    .round-widget .widget-icon {
-        width: 70px;
-        height: 70px;
-        border: 2px solid #bbb;
-        border-radius: 50%;
-        line-height: 70px;
-        /!*font-size: 25px;*!/
-    }
 
-    .round-widget .widget-text {
-        /!*width: 70px;
-        height: 70px;
-        border: 1px solid;
-        border-radius: 50%;
-        line-height: 70px;
-        font-size: 25px;*!/
-    }
 
-    a.round-widget {
-        width: 70px;
-        /!* height: 70px; *!/
-        font-size: 15px;
-        text-align: center;
-        display: inline-table;
-        overflow: hidden;
-        margin: 10px;
-        text-decoration: none;
-        color: #fff;
-    }
-*/
-
+    
 
 </style>

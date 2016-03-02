@@ -117,12 +117,13 @@
 <script>
     
     function menuShow(){
-        
+        google.charts.load('current', {'packages':['gauge', 'corechart']});
          /**
         * Use angular_drupal module to directly check for connection. Usinng the injector, we can access function within providers 
         * in any angular module - services, factories, rootscope and custom providers.
         **/        
         app.application.pane.loader.show();
+        /*
         $drupal
             .connect()
             .then(function(data) {
@@ -141,8 +142,138 @@
                     //alert('Please login.');
                 }
             });
+        */
+        
+        checkConnection();      
+        
         
     }
+    
+    
+    checkConnection = function(){                        
+        
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "http://excitenet.co.uk/users-json/user/token",
+                    dataType: "json",
+                    //crossDomain: true,
+                    type: "POST"
+
+                }
+            },
+            schema: {
+               
+                data: function(result) {
+                    // the data which the data source will be bound to is in the values field
+                    //console.log(result);
+                    return [result];
+                }
+            }
+        });
+        dataSource
+            .fetch()
+            .then(function(){
+                var data = dataSource.data();
+                var _token = data[0].token;
+                //that.set('token',_token);
+                //alert(_token);
+
+
+                connect(_token);
+
+        });
+        
+        
+    },
+    
+    connect = function(token){                              
+
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "http://excitenet.co.uk/?q=users-json/system/connect.json",
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('X-CSRF-Token', token);                            
+                    },                        
+                    dataType: "json",                        
+                    type: "POST"
+                }
+            },
+            schema: {
+                
+                data: function(result) {
+                    // the data which the data source will be bound to is in the values field
+                    //console.log(data.body);
+                    return [
+                        {user:result.user},
+                        {"user_id":result.user.uid}
+                    ];
+                }
+            }
+        });
+
+        //dataSource.fetch();
+        dataSource.fetch(function(){
+
+            var data = dataSource.data();
+            user_id = data[1].user_id;
+
+            //console.log(data);
+            //alert(user_id);
+
+            if (user_id > 0) {
+
+                var user = data[0].user;
+
+                app.loginService.viewModel.set("loginError", "");
+                //app.loginService.viewModel.kToken();
+                app.loginService.viewModel.set('token',token);
+                app.loginService.viewModel.set('isLoggedIn',true);
+
+                app.loginService.viewModel.set("user.username", user.name);
+                app.loginService.viewModel.set("user.password", user.password);
+                app.loginService.viewModel.set("user.user_id", user_id);
+                app.loginService.viewModel.set("user.email", user.mail);
+                app.loginService.viewModel.set("user.currency", "GBP");
+                app.loginService.viewModel.set("user.tariff", "6");
+                app.loginService.viewModel.set("user.first_name", "");
+                app.loginService.viewModel.set("user.last_name", "");
+                app.loginService.viewModel.set("user.phone", "");
+                app.loginService.viewModel.set("user.client_id", "");
+                app.loginService.viewModel.set("user.country_iso", "GB");
+                app.loginService.viewModel.set("user.token", token);
+
+                app.application.pane.loader.hide();
+                
+            } else {
+                
+                app.loginService.viewModel.set('token','');                    
+                app.loginService.viewModel.set('isLoggedIn',false);
+                app.application.pane.loader.hide();
+
+                app.loginService.viewModel.set("user.username", "");
+                app.loginService.viewModel.set("user.password", "");
+                app.loginService.viewModel.set("user.user_id", 0);
+                app.loginService.viewModel.set("user.email", "");
+                app.loginService.viewModel.set("user.currency", "GBP");
+                app.loginService.viewModel.set("user.tariff", "6");
+                app.loginService.viewModel.set("user.first_name", "");
+                app.loginService.viewModel.set("user.last_name", "");
+                app.loginService.viewModel.set("user.phone", "");
+                app.loginService.viewModel.set("user.client_id", "");
+                app.loginService.viewModel.set("user.country_iso", "GB");
+                app.loginService.viewModel.set("user.token", token);
+                
+                //alert('Please login.');
+            }
+
+
+
+            
+        });
+    }
+
     
     
     

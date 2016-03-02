@@ -1,0 +1,168 @@
+<div data-role="view" id="view-titles" data-title="Profile" data-show="showTitles">
+
+    <img src="images/people/eduardo.jpg" class="jt-km-thumbnail" style="width: 10em; height: 10em; margin: 2em auto; display: block; float: none;">
+
+    <h1 class="line-wrap single"><span>This is a title</span></h1>
+
+    <section ui segment>
+
+        <div class="ui buttons">
+            <button class="ui button">Cancel</button>
+            <div class="or"></div>
+            <button class="ui positive button">Save</button>
+        </div>
+
+    </section>
+
+    <section ui segment>
+
+
+
+    </section>
+
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+    <section ui segment>
+        <div id="piechart_div" style="width: 100%; height: 300px;"></div>
+    </section>
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+    <section ui segment>
+        <div id="barchart_div" style="width: 100%; height: 300px;"></div>
+    </section>
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+    <section ui segment>
+        <div id="chart_div" style="width: 100%; height: 300px;"></div>
+    </section>
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+    <section ui segment>
+        <div id="guarge_div" class="jt-chart"></div>
+    </section>
+
+
+
+</div>
+
+
+
+
+<style>
+
+
+
+</style>
+
+
+<script type="text/javascript">
+
+
+    function showTitles(){
+        if(typeof google.charts == 'undefined'){
+            // Load Charts and the corechart and barchart packages.
+            google.charts.load('current', {'packages':['gauge', 'corechart']});
+        }
+
+        // Draw the pie chart and bar chart when Charts is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+    }
+
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+            ['Mushrooms', 3],
+            ['Onions', 1],
+            ['Olives', 1],
+            ['Zucchini', 1],
+            ['Pepperoni', 2]
+        ]);
+
+        var piechart_options = {title:'Pie Chart: How Much Pizza I Ate Last Night',
+            width:400,
+            height:300};
+        var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+        piechart.draw(data, piechart_options);
+
+        var barchart_options = {title:'Barchart: How Much Pizza I Ate Last Night',
+            width:400,
+            height:300,
+            legend: 'none'};
+        var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+        barchart.draw(data, barchart_options);
+
+
+        //=============================================================
+        var guarge_data = google.visualization.arrayToDataTable([
+            ['Label', 'Value'],
+            ['Memory', 80],
+            ['CPU', 55],
+            ['Network', 68]
+        ]);
+
+        var guarge_options = {
+            width: 300, height: 120,
+            redFrom: 90, redTo: 100,
+            yellowFrom:75, yellowTo: 90,
+            minorTicks: 5
+        };
+
+        var guarge_chart = new google.visualization.Gauge(document.getElementById('guarge_div'));
+
+        guarge_chart.draw(guarge_data, guarge_options);
+
+        setInterval(function() {
+            guarge_data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+            guarge_chart.draw(guarge_data, guarge_options);
+        }, 13000);
+        setInterval(function() {
+            guarge_data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+            guarge_chart.draw(guarge_data, guarge_options);
+        }, 5000);
+        setInterval(function() {
+            guarge_data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+            guarge_chart.draw(guarge_data, guarge_options);
+        }, 26000);
+
+
+
+
+        //===============================================================
+        // Some raw chart_data (not necessarily accurate)
+        var chart_data = google.visualization.arrayToDataTable([
+            ['Month',   'Cups', 'Average'],
+            ['2004/05',  165,      614.6],
+            ['2005/06',  135,      682],
+            ['2006/07',  157,      623],
+            ['2007/08',  139,      609.4],
+            ['2008/09',  136,      569.6]
+        ]);
+
+        var chart_options = {
+            title : 'Monthly Coffee Production by Country',
+            //vAxis: {},
+            vAxes: {
+                0: {
+                    title: 'Cups'
+                },
+                1: {
+                    title: 'Average'
+                }
+            },
+            hAxis: {title: 'Month'},
+            seriesType: 'bars',
+            series: {
+                0:{ type: "bars", targetAxisIndex: 0 },
+                1: { type: "line", targetAxisIndex: 1}
+            }
+        };
+
+        var chart_chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart_chart.draw(chart_data, chart_options);
+
+    }
+</script>

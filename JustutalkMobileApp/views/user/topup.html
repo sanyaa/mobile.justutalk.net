@@ -1,412 +1,62 @@
-<div data-role="view" data-title="Settings" data-model="APP.models.settings" data-init="init_topup" id="topup-view">
+<div data-role="view" data-title="Settings" data-model="app.checkoutService.viewModel"
+     data-init="init_topup" data-show="show_topup" id="topup-view">
 
 
-  <div class="hero">
-    <i class="fa fa-cart-plus"></i>
-    <span>Recharge</span>
-  </div>
+      <div class="hero">
+        <i class="fa fa-cart-plus"></i>
+        <span>Recharge</span>
+      </div>
 
-  <!--<select id="combo" class="topup-amounts">
-    <option value="1">&pound;5.00</option>
-    <option value="2">&pound;10.00</option>
-    <option value="3">&pound;15.00</option>
-  </select>-->
+      <div class="divider-green"></div>
 
-  <div class="divider-green"></div>
+      <form data-bind="events: { keyup: checkEnter }" data-navto-fn="checkoutBilling">
+          <div class="jt-center">
 
-  <div class=" jt-center">
-    <!--<h4 style="margin-top: 2em;">Cap Size</h4>-->
-    <select id="topup-amounts" style="width: 100%;" >
-      <option value="">Select topup amount..</option>
-      <option value="1">&pound;5.00</option>
-      <option value="2">&pound;10.00</option>
-      <option value="3">&pound;15.00</option>
-    </select>
-  </div>
-  <!--<div style="margin: 5px auto" class="jt-center">
-    <a href="" data-role="button" style="width: 100%;"  >Topup Now</a>
-  </div>-->
+            <select id="topup-amounts" data-role="dropdownlist" style="width: 100%;"
+                    data-bind="value: selected_product.product_id, source: products, events: { change: checkout.topup.onChange }">
 
+            </select>
 
-  <form data-bind="events: { keyup: checkEnter }" id="checkout-form" data-id="checkout-form">
-    <fieldset>
-      <legend><span>1</span> Billing Address</legend>
-      <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+          </div>
 
-        <li><!--Name:-->
-          <input type="text" data-bind="value: username" placeholder="Name"/>
-        </li>
-        <li><!--Email:-->
-          <input type="email" data-bind="value: email" placeholder="Email"/>
-        </li>
-        <li><!--Subject:-->
-          <input type="text" ata-bind="value: subject" placeholder="Subject"/>
-        </li>
-        <li><!--Message:-->
-          <textarea style="resize: none; width: 100%; padding-left: 0;" placeholder="Message"></textarea>
-        </li>
+          <input id="change-topup-amount" type="button"
+                 data-click="changeTopupAmount"
+                 value="Change Topup Amount"
+                 class="contact-button" data-role="button" />
 
-      </ul>
-    </fieldset>
+          <input id="topup-buy-now" type="submit"
+                 data-bind="click: checkoutBilling, invisible: isLoggedIn"
+                   value="Buy now" class="contact-button" data-role="button" />
+
+          <div style="margin: 10px 0"> </div>
+      </form>
 
 
-    <fieldset>
-      <legend><span>2</span> Card Details</legend>
-      <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
-
-        <li><!--Name:-->
-          <input type="text" data-bind="value: username" placeholder="Name"/>
-        </li>
-        <li><!--Email:-->
-          <input type="email" data-bind="value: email" placeholder="Email"/>
-        </li>
-        <li><!--Subject:-->
-          <input type="text" ata-bind="value: subject" placeholder="Subject"/>
-        </li>
-        <li><!--Message:-->
-          <textarea style="resize: none; width: 100%; padding-left: 0;" placeholder="Message"></textarea>
-        </li>
-
-        <li>
-          <label>
-            Type date
-            <input type="date" value="2012-03-22" />
-          </label>
-        </li>
-        <li>
-          <label>
-            Type time
-            <input type="time" value="22:30" />
-          </label>
-        </li>
-        <li>
-          <label>
-            Type month
-            <input type="month" value="2012-01" />
-          </label>
-        </li>
-        <li>
-          <label>
-            Type datetime-local
-            <input type="datetime-local" value="2012-03-22T20:15" />
-          </label>
-        </li>
-
-      </ul>
-    </fieldset>
-
-    <input id="contact" type="submit" data-bind="click: onLogin, invisible: isLoggedIn"
-           value="Buy now" class="contact-button" data-role="button" />
-
-    <div style="margin: 10px 0"> </div>
-
-
-  </form>
 
 </div>
 
 <script>
 
+    // create ComboBox from select HTML element
+    $("#size").kendoComboBox();
+
+
+  function changeTopupAmount(){
+      jQuery('#topup-amounts').trigger('click');
+  }
 
   function init_topup(){
-    // create ComboBox from select HTML element
-
-    var combo = $("#combo").kendoComboBox();
-
-    // create DropDownList from select HTML element
-    $("#topup-amounts").kendoDropDownList();
-
+      app.checkoutService.viewModel.getProduct(0);
   }
-  $(document).ready(function() {
-    // create ComboBox from input HTML element
-   /* $("#fabric").kendoComboBox({
-      dataTextField: "text",
-      dataValueField: "value",
-      dataSource: [
-        { text: "Cotton", value: "1" },
-        { text: "Polyester", value: "2" },
-        { text: "Cotton/Polyester", value: "3" },
-        { text: "Rib Knit", value: "4" }
-      ],
-      filter: "contains",
-      suggest: true,
-      index: 3
-    });*/
+
+  function show_topup() {
+      //app.checkoutService.viewModel.getProduct(0);
+
+      $("#topup-amounts").kendoDropDownList({
+          dataTextField: "commerce_price_formatted",
+          dataValueField: "product_id"
+      });
+  }
 
 
-
-    /*var fabric = $("#fabric").data("kendoComboBox");
-    var select = $("#size").data("kendoComboBox");*/
-
-
-    $("#get").click(function() {
-      alert('Thank you! Your Choice is:\n\nFabric ID: ' + fabric.value() + ' and Size: ' + select.value());
-    });
-  });
 </script>
-
-<style>
-
-  #topup-amounts{
-
-
-  }
-
-  fieldset {
-    border: .2em solid #eee;
-    margin: .5em;
-  }
-
-  fieldset legend{
-    text-align: left;
-    font-weight: 700;
-    padding: 0 5px;
-  }
-
-  fieldset legend span {
-    background-color: #eee;
-    text-align: center;
-    width: 25px;
-    padding: 0 5px;
-    display: inline-block;
-  }
-
-  .k-textbox,
-  .k-autocomplete,
-  .k-dropdown-wrap,
-  .k-picker-wrap,
-  .k-numeric-wrap {
-    border-width: 1px;
-    border-style: solid;
-    padding: 0 1.9em 0 0;
-    border-color: #eee;
-    height: 2em;
-  }
-  .topup-amounts{
-    border-color: #999;
-  }
-
-
-
-  #topup-view .fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    margin-right: 21px;
-    -moz-osx-font-smoothing: grayscale;
-    width: 11px;
-  }
-
-  #contact-info li span{
-    margin: 10px;
-
-  }
-
-  #topup-view .km-list>li {
-    font-size: 1.1em;
-    padding-left: 0;
-    background: transparent;
-    border-radius: 0;
-    border-width: 0;
-    border-style: none;
-    border-image: none;
-  }
-
-  #contact-info li span:nth-child(2){
-    /*border-left: 1px solid #524F4F;
-    padding-left: 20px;*/
-  }
-
-
-
-  .k-dropdown .k-input{
-    font-size: 2em;
-  }
-
-  #topup-view .k-textbox>input,
-  #topup-view .k-autocomplete .k-input,
-  #topup-view .k-picker-wrap .k-input,
-  #topup-view .k-numeric-wrap .k-input,
-  #topup-view .k-dropdown-wrap .k-input,
-  #topup-view .k-selectbox .k-input {
-    height: 1.65em;
-    line-height: 1.65em;
-    /*padding: .177em 0;
-    text-indent: .33em;
-    border: 0;
-    margin: 0;*/
-  }
-
-  #topup-view .k-textbox,
-  #topup-view .k-autocomplete,
-  #topup-view .k-dropdown-wrap,
-  #topup-view .k-picker-wrap,
-  #topup-view .k-numeric-wrap {
-    border-width: 1px;
-    border-style: solid;
-    /* padding: 0 1.9em 0 0; */
-    border-color: #eee;
-    height: 4em;
-  }
-
-
-
-  /******/
-
-  .k-icon {
-    margin-right: 5px;
-  }
-
-  #checkout-form, #contact-info {
-    margin: 0 10px 0;
-  }
-
-  #checkout-form ul{
-    /*margin: 45px 0 25px;*/
-  }
-
-  #checkout-form #contact, #checkout-form #register {
-    background-color: rgb(140, 199, 0);
-    color: #fff;
-  }
-
-  #checkout-form p {
-    margin-top: 10px;
-    text-align: center;
-  }
-
-  #checkout-form p a {
-    text-decoration: none;
-    font-size: .8em;
-  }
-
-  #checkout-form .km-listview-wrapper {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .km-label-above, label.km-inline-field {
-    font-size: .72em;
-    line-height: 1.2em;
-  }
-  .km-label-above {
-    width: 100%;
-    font-size: .87em;
-    display: block;
-    margin-top: -1.3em;
-    padding-top: .92em;
-    padding-bottom: 3.3em;
-    margin-bottom: -2em;
-  }
-
-  .contact-button {
-    margin: 0 auto;
-    display: block;
-    width: 100%;
-    font-size: 1.1em;
-  }
-
-  #contact[type=submit]{
-    font-size: 1.1em;
-  }
-
-  #contact.km-button {
-    font-size: 1.1em;
-  }
-
-
-  /* #checkout-form .km-list input[type=password],
-   #checkout-form .km-list input[type=text]:not(.k-input)
-       /!*.km-ios7 .km-list input[type=search],
-       .km-ios7 .km-list input[type=number],
-       .km-ios7 .km-list input[type=tel],
-       .km-ios7 .km-list input[type=url],
-       .km-ios7 .km-list input[type=email],
-       .km-ios7 .km-list input[type=month],
-       .km-ios7 .km-list input[type=color],
-       .km-ios7 .km-list input[type=week],
-       .km-ios7 .km-list input[type=date],
-       .km-ios7 .km-list input[type=time],
-       .km-ios7 .km-list input[type=datetime],
-       .km-ios7 .km-list input[type=datetime-local],
-       .km-ios7 .km-list select:not([multiple]),
-       .km-ios7 .km-list .k-dropdown-wrap,
-       .km-ios7 .km-list textarea*!/ {
-       appearance: none;
-       -moz-appearance: none;
-       -webkit-appearance: none;
-       font-size: 1.1rem;
-       min-width: 8em;
-       border: 0;
-       padding: .4em;
-       outline: 0;
-       left: 2em;
-       background: transparent;
-   }*/
-
-  .item-list img {
-    width: 4em;
-    height: 4em;
-    width: 4rem;
-    height: 4rem;
-    float: left;
-    margin-right: 1em;
-    margin-right: 1rem;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    margin-bottom: 3px;
-    margin-left: 2px;
-  }
-
-
-  #checkout-form .km-list input[type=text]:not(.k-input),
-  #checkout-form .km-list input[type=password],
-  #checkout-form .km-list input[type=search],
-  #checkout-form .km-list input[type=number],
-  #checkout-form .km-list input[type=tel],
-  #checkout-form .km-list input[type=url],
-  #checkout-form .km-list input[type=email],
-  #checkout-form .km-list input[type=file],
-  #checkout-form .km-list input[type=month],
-  #checkout-form .km-list input[type=color],
-  #checkout-form .km-list input[type=week],
-  #checkout-form .km-list input[type=date],
-  #checkout-form .km-list input[type=time],
-  #checkout-form .km-list input[type=datetime],
-  #checkout-form .km-list input[type=datetime-local],
-  #checkout-form .km-list select:not([multiple]),
-  #checkout-form .km-list .k-dropdown,
-  #checkout-form .km-list textarea {
-    width: 100%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 1em;
-    position: static;
-    top: 50%;
-    line-height: normal;
-    z-index: 1;
-    right: 0;
-    margin-top: 0;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-
-
-  #checkout-form .km-widget .km-list textarea {
-    position: relative;
-    float: none;
-    margin-top: 0;
-    font-family: inherit;
-  }
-  #checkout-form textarea {
-    padding: 5px;
-    float: none!important;
-  }
-
-
-
-</style>

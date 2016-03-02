@@ -262,3 +262,18 @@ Note:
         request.setRequestHeader(key, value);
       }
     }
+
+
+
+Kendo ui getting Information THrough e parameter in function
+---
+
+eg:
+
+    function(e){
+        e.sender.dataItem(e.item).product_id;
+        e.sender.dataItem(e.item)[e.sender.options.dataValueField];
+
+        > if the dataValueField is set to product_id in this example, the two lines
+        > will produce same result.
+    }

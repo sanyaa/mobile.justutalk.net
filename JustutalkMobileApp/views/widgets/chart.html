@@ -1,0 +1,170 @@
+<div data-role="view" id="badges-profile" data-title="Profile"
+     data-show="showChart"  data-init="initChart">
+
+    <img src="images/people/eduardo.jpg" class="jt-km-thumbnail" style="width: 10em; height: 10em; margin: 2em auto; display: block; float: none;">
+
+    <h1 class="title line-wrap double"><span>This is a title</span></h1>
+
+
+
+    <div class="ui segment">
+        <div id="charts_chart_div" class="jt-chart"></div>
+
+
+    </div>
+
+    <div class="ui segment">
+
+        <table class="ui celled table red unstackable">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Correct Guesses</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="images/people/ann.jpg" class="ui mini rounded image">
+                        <div class="content">
+                            Lena
+                            <div class="sub header">Human Resources
+                            </div>
+                        </div>
+                    </h4>
+                </td>
+                <td>
+                    22
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="images/people/eduardo.jpg" class="ui mini rounded image">
+                        <div class="content">
+                            Matthew
+                            <div class="sub header">Fabric Design
+                            </div>
+                        </div>
+                    </h4>
+                </td>
+                <td>
+                    15
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="images/people/daniel.jpg" class="ui mini rounded image">
+                        <div class="content">
+                            Lindsay
+                            <div class="sub header">Entertainment
+                            </div>
+                        </div>
+                    </h4>
+                </td>
+                <td>
+                    12
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="images/people/steve.jpg" class="ui mini rounded image">
+                        <div class="content">
+                            Mark
+                            <div class="sub header">Executive
+                            </div>
+                        </div>
+                    </h4>
+                </td>
+                <td>
+                    11
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<!--<div data-role="layout" data-id="mobile-tabstrip" data-show="showDemoLayout">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+            <a data-align="right" data-role="button" class="nav-button" data-icon="home" href="#/"></a>
+            <a data-align="right" data-icon="source-code" data-click="goToSourceCode" data-role="button" title="Show this demo source code"></a>
+        </div>
+    </header>
+
+    <p>TabStrip</p>
+
+    <div data-role="footer">
+        <div data-role="tabstrip" id="badges-tabs">
+            <a href="#badges-profile" data-icon="home">Home
+            </a><a href="#badges-sales" data-icon="edit" data-badge="10">Mail</a>
+        </div>
+    </div>
+</div>-->
+
+
+<style>
+
+
+
+
+</style>
+
+<script>
+
+
+    function initChart(){
+        if(typeof google.charts == 'undefined'){
+            // Load Charts and the corechart and barchart packages.
+            google.charts.load('current', {'packages':['gauge', 'corechart']});
+        }
+        //google.charts.load('current', {packages: ['gauge', 'corechart']});
+    }
+    function showChart() {
+
+        google.charts.setOnLoadCallback(drawVisualization);
+        //drawVisualization();
+    }
+
+    function drawVisualization() {
+
+        // Some raw charts_data (not necessarily accurate)
+        var charts_data = google.visualization.arrayToDataTable([
+                ['Month', 'Cups', 'Average'],
+                ['2004/05',  165,      614.6],
+                ['2005/06',  135,      682],
+                ['2006/07',  157,      623],
+                ['2007/08',  139,      609.4],
+                ['2008/09',  136,      569.6]
+        ]);
+
+        var charts_options = {
+            title : 'Monthly Coffee Production by Country',
+            //vAxis: {},
+            vAxes: {
+                0: {
+                    title: 'Cups'
+                },
+                1: {
+                    title: 'Average'
+                }
+            },
+            hAxis: {title: 'Month'},
+            seriesType: 'bars',
+            series: {
+                0:{ type: "bars", targetAxisIndex: 0 },
+                1: { type: "line", targetAxisIndex: 1}
+            }
+        };
+
+        var charts_chart = new google.visualization.ComboChart(document.getElementById('charts_chart_div'));
+        charts_chart.draw(charts_data, charts_options);
+    }
+</script>

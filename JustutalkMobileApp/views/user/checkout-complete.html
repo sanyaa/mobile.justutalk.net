@@ -1,0 +1,52 @@
+<div data-role="view" data-title="Checkout::Complete" data-model="app.checkoutService.viewModel"
+     data-init="init_checkout_complete" id="checkout-complete-view" data-layout="second-layout">
+
+
+  <div class="hero">
+    <i class="fa fa-cart-plus"></i>
+    <span>Recharge</span>
+  </div>
+
+
+  <div class="divider-green"></div>
+
+  <form id="checkout-form" data-id="checkout-form">
+
+    <fieldset>
+      <legend><span>2</span> Checkout Complete</legend>
+      <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+
+        Thank you
+
+
+      </ul>
+    </fieldset>
+
+    <input id="contact" type="button" data-bind="click: homePage, invisible: isLoggedIn"
+           value="Back to home page" class="contact-button" data-role="button" />
+
+    <div style="margin: 10px 0"> </div>
+
+
+  </form>
+
+</div>
+
+<script>
+
+
+  function init_checkout_complete(){
+
+
+  }
+
+</script>
+
+<style>
+
+
+
+
+
+
+</style>

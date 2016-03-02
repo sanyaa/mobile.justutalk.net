@@ -1,4 +1,62 @@
-<div data-role="view" data-title="Settings" data-model="APP.models.settings">
+<div id="view-topup-history" data-role="view" data-title="Settings" data-model="APP.models.settings">
   <h1 data-bind="html: title"></h1>
   <input type="text" data-bind="value: title" />
+    
+    
+  <div id="example">
+    <div class="demo-section">
+        <div class="settings-head"></div>
+        <ul>
+            <li>Notifications <input type="checkbox" id="notifications-switch" checked="checked" /></li>
+            <li>Send notifications <input id="mail-switch" /></li>
+            <li>Always visible <input id="visible-switch" /></li>
+            <li>Display real name <input id="name-switch" /></li>
+        </ul>
+    </div>
+
+        <style>
+            .demo-section ul {
+                margin: 0;
+                padding: 0;
+            }
+            .demo-section ul li {
+                margin: 0;
+                padding: 10px 10px 10px 20px;
+                min-height: 28px;
+                line-height: 28px;
+                vertical-align: middle;
+                border-top: 1px solid rgba(128,128,128,.5);
+            }
+            .demo-section {
+                min-width: 220px;
+                margin-top: 50px;
+                padding: 0;
+            }
+            .demo-section ul li .km-switch {
+                float: right;
+            }
+            .settings-head {
+                height: 66px;
+                background: url('../content/web/switch/settings-title.png') no-repeat 20px 50% #2db245;
+            }
+        </style>
+      
+    </div>
+
+    <script>
+        $(function() {
+            $("#notifications-switch").kendoMobileSwitch();
+            $("#mail-switch").kendoMobileSwitch({
+                onLabel: "YES",
+                offLabel: "NO"
+            });
+            $("#visible-switch").kendoMobileSwitch({
+                checked: true
+            });
+            $("#name-switch").kendoMobileSwitch();
+        });
+    </script>
+    
+    
+    
 </div>

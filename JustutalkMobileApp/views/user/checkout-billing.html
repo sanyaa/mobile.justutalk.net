@@ -1,0 +1,340 @@
+<div data-role="view" data-title="Checkout" data-model="app.checkoutService.viewModel"
+     data-init="init_checkout_billing" id="checkout-billing-view" data-layout="second-layout">
+
+
+  <div class="hero">
+    <i class="fa fa-cart-plus"></i>
+    <span>Checkout::Billing Address</span>
+  </div>
+
+
+  <div class="divider-green"></div>
+
+  <form data-bind="events: { keyup: checkEnter }" id="checkout-form" data-id="checkout-form"
+        class="checkout" data-navto-fn="checkoutPayment">
+    <fieldset>
+      <legend><span>1</span> Billing Address</legend>
+      <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+        
+        <li><!--Country:-->
+          <select name="" id="billibg-country" style="width: 100%;" data-bind="value: checkout.billing.country"></select>
+        </li>
+
+        <li><!--First Name:-->
+          <input type="text" data-bind="value: checkout.billing.first_name" placeholder="First Name"/>
+        </li>
+        <li><!--Last Name:-->
+          <input type="text" data-bind="value: checkout.billing.last_name" placeholder="Last Name"/>
+        </li>
+        <li><!--Address1:-->
+          <input type="text" data-bind="value: checkout.billing.address1" placeholder="address 1"/>
+        </li>
+        <li><!--Address2:-->
+          <input type="text" data-bind="value: checkout.billing.address2" placeholder="address 2"/>
+        </li>
+        <li><!--Town/City:-->
+          <input type="text" data-bind="value: checkout.billing.city" placeholder="Town/City"/>
+        </li>
+        <li><!--County/State:-->
+          <input type="text" data-bind="value: checkout.billing.county" placeholder="County/State"/>
+        </li>
+        <li><!--County/State:-->
+          <input type="text" data-bind="value: checkout.billing.postcode" placeholder="Postcode"/>
+        </li>
+
+      </ul>
+
+    </fieldset>
+
+    <input id="contact" type="button" data-bind="click: checkoutPayment, invisible: isLoggedIn"
+           value="Continue" class="contact-button" data-role="button" />
+
+    <div style="margin: 10px 0"> </div>
+
+  </form>
+
+</div>
+
+<script>
+
+  var data_Rates = [
+    {"flag": "AF.png", "iso": "AF"                                , "display": "Afghanistan"},
+    {"flag": "AX.png", "iso": "AX"                              , "display": "Aland Islands"},
+    {"flag": "AL.png", "iso": "AL"                                    , "display": "Albania"},
+    {"flag": "DZ.png", "iso": "DZ"                                    , "display": "Algeria"},
+    {"flag": "AS.png", "iso": "AS"                             , "display": "American Samoa"},
+    {"flag": "AD.png", "iso": "AD"                                    , "display": "Andorra"},
+    {"flag": "AO.png", "iso": "AO"                                     , "display": "Angola"},
+    {"flag": "AI.png", "iso": "AI"                                   , "display": "Anguilla"},
+    {"flag": "AQ.png", "iso": "AQ"                                 , "display": "Antarctica"},
+    {"flag": "AG.png", "iso": "AG"                        , "display": "Antigua and Barbuda"},
+    {"flag": "AR.png", "iso": "AR"                                  , "display": "Argentina"},
+    {"flag": "AM.png", "iso": "AM"                                    , "display": "Armenia"},
+    {"flag": "AW.png", "iso": "AW"                                      , "display": "Aruba"},
+    {"flag": "AU.png", "iso": "AU"                                  , "display": "Australia"},
+    {"flag": "AT.png", "iso": "AT"                                    , "display": "Austria"},
+    {"flag": "AZ.png", "iso": "AZ"                                 , "display": "Azerbaijan"},
+    {"flag": "BS.png", "iso": "BS"                                    , "display": "Bahamas"},
+    {"flag": "BH.png", "iso": "BH"                                    , "display": "Bahrain"},
+    {"flag": "BD.png", "iso": "BD"                                 , "display": "Bangladesh"},
+    {"flag": "BB.png", "iso": "BB"                                   , "display": "Barbados"},
+    {"flag": "BY.png", "iso": "BY"                                    , "display": "Belarus"},
+    {"flag": "BE.png", "iso": "BE"                                    , "display": "Belgium"},
+    {"flag": "BZ.png", "iso": "BZ"                                     , "display": "Belize"},
+    {"flag": "BJ.png", "iso": "BJ"                                      , "display": "Benin"},
+    {"flag": "BM.png", "iso": "BM"                                    , "display": "Bermuda"},
+    {"flag": "BT.png", "iso": "BT"                                     , "display": "Bhutan"},
+    {"flag": "BO.png", "iso": "BO"                                    , "display": "Bolivia"},
+    {"flag": "BQ.png", "iso": "BQ"           , "display": "Bonaire, Sint Eustatius and Saba"},
+    {"flag": "BA.png", "iso": "BA"                     , "display": "Bosnia and Herzegovina"},
+    {"flag": "BW.png", "iso": "BW"                                   , "display": "Botswana"},
+    {"flag": "BV.png", "iso": "BV"                              , "display": "Bouvet Island"},
+    {"flag": "BR.png", "iso": "BR"                                     , "display": "Brazil"},
+    {"flag": "IO.png", "iso": "IO"             , "display": "British Indian Ocean Territory"},
+    {"flag": "VG.png", "iso": "VG"                     , "display": "British Virgin Islands"},
+    {"flag": "BN.png", "iso": "BN"                                     , "display": "Brunei"},
+    {"flag": "BG.png", "iso": "BG"                                   , "display": "Bulgaria"},
+    {"flag": "BF.png", "iso": "BF"                               , "display": "Burkina Faso"},
+    {"flag": "BI.png", "iso": "BI"                                    , "display": "Burundi"},
+    {"flag": "KH.png", "iso": "KH"                                   , "display": "Cambodia"},
+    {"flag": "CM.png", "iso": "CM"                                   , "display": "Cameroon"},
+    {"flag": "CA.png", "iso": "CA"                                     , "display": "Canada"},
+    {"flag": "CV.png", "iso": "CV"                                 , "display": "Cape Verde"},
+    {"flag": "KY.png", "iso": "KY"                             , "display": "Cayman Islands"},
+    {"flag": "CF.png", "iso": "CF"                   , "display": "Central African Republic"},
+    {"flag": "TD.png", "iso": "TD"                                       , "display": "Chad"},
+    {"flag": "CL.png", "iso": "CL"                                      , "display": "Chile"},
+    {"flag": "CN.png", "iso": "CN"                                      , "display": "China"},
+    {"flag": "CX.png", "iso": "CX"                           , "display": "Christmas Island"},
+    {"flag": "CC.png", "iso": "CC"                    , "display": "Cocos (Keeling) Islands"},
+    {"flag": "CO.png", "iso": "CO"                                   , "display": "Colombia"},
+    {"flag": "KM.png", "iso": "KM"                                    , "display": "Comoros"},
+    {"flag": "CG.png", "iso": "CG"                        , "display": "Congo (Brazzaville)"},
+    {"flag": "CD.png", "iso": "CD"                           , "display": "Congo (Kinshasa)"},
+    {"flag": "CK.png", "iso": "CK"                               , "display": "Cook Islands"},
+    {"flag": "CR.png", "iso": "CR"                                 , "display": "Costa Rica"},
+    {"flag": "HR.png", "iso": "HR"                                    , "display": "Croatia"},
+    {"flag": "CU.png", "iso": "CU"                                       , "display": "Cuba"},
+    {"flag": "CW.png", "iso": "CW"                                    , "display": "Curaçao"},
+    {"flag": "CY.png", "iso": "CY"                                     , "display": "Cyprus"},
+    {"flag": "CZ.png", "iso": "CZ"                             , "display": "Czech Republic"},
+    {"flag": "DK.png", "iso": "DK"                                    , "display": "Denmark"},
+    {"flag": "DJ.png", "iso": "DJ"                                   , "display": "Djibouti"},
+    {"flag": "DM.png", "iso": "DM"                                   , "display": "Dominica"},
+    {"flag": "DO.png", "iso": "DOc"                        , "display": "Dominican Republic"},
+    {"flag": "EC.png", "iso": "EC"                                    , "display": "Ecuador"},
+    {"flag": "EG.png", "iso": "EG"                                      , "display": "Egypt"},
+    {"flag": "SV.png", "iso": "SV"                                , "display": "El Salvador"},
+    {"flag": "GQ.png", "iso": "GQ"                          , "display": "Equatorial Guinea"},
+    {"flag": "ER.png", "iso": "ER"                                    , "display": "Eritrea"},
+    {"flag": "EE.png", "iso": "EE"                                    , "display": "Estonia"},
+    {"flag": "ET.png", "iso": "ET"                                   , "display": "Ethiopia"},
+    {"flag": "EU.png", "iso": "EU"                                  , "display": "Euro Zone"},
+    {"flag": "FK.png", "iso": "FK"                           , "display": "Falkland Islands"},
+    {"flag": "FO.png", "iso": "FO"                              , "display": "Faroe Islands"},
+    {"flag": "FJ.png", "iso": "FJ"                                       , "display": "Fiji"},
+    {"flag": "FI.png", "iso": "FI"                                    , "display": "Finland"},
+    {"flag": "FR.png", "iso": "FR"                                     , "display": "France"},
+    {"flag": "GF.png", "iso": "GF"                              , "display": "French Guiana"},
+    {"flag": "PF.png", "iso": "PF"                           , "display": "French Polynesia"},
+    {"flag": "TF.png", "iso": "TF"                , "display": "French Southern Territories"},
+    {"flag": "GA.png", "iso": "GA"                                      , "display": "Gabon"},
+    {"flag": "GM.png", "iso": "GM"                                     , "display": "Gambia"},
+    {"flag": "GE.png", "iso": "GE"                                    , "display": "Georgia"},
+    {"flag": "DE.png", "iso": "DE"                                    , "display": "Germany"},
+    {"flag": "GH.png", "iso": "GH"                                      , "display": "Ghana"},
+    {"flag": "GI.png", "iso": "GI"                                  , "display": "Gibraltar"},
+    {"flag": "GR.png", "iso": "GR"                                     , "display": "Greece"},
+    {"flag": "GL.png", "iso": "GL"                                  , "display": "Greenland"},
+    {"flag": "GD.png", "iso": "GD"                                    , "display": "Grenada"},
+    {"flag": "GP.png", "iso": "GP"                                 , "display": "Guadeloupe"},
+    {"flag": "GU.png", "iso": "GU"                                       , "display": "Guam"},
+    {"flag": "GT.png", "iso": "GT"                                  , "display": "Guatemala"},
+    {"flag": "GG.png", "iso": "GG"                                   , "display": "Guernsey"},
+    {"flag": "GN.png", "iso": "GN"                                     , "display": "Guinea"},
+    {"flag": "GW.png", "iso": "GW"                              , "display": "Guinea-Bissau"},
+    {"flag": "GY.png", "iso": "GY"                                     , "display": "Guyana"},
+    {"flag": "HT.png", "iso": "HT"                                      , "display": "Haiti"},
+    {"flag": "HM.png", "iso": "HM"          , "display": "Heard Island and McDonald Islands"},
+    {"flag": "HN.png", "iso": "HN"                                   , "display": "Honduras"},
+    {"flag": "HK.png", "iso": "HK"                    , "display": "Hong Kong S.A.R., China"},
+    {"flag": "HU.png", "iso": "HU"                                    , "display": "Hungary"},
+    {"flag": "IS.png", "iso": "IS"                                    , "display": "Iceland"},
+    {"flag": "IN.png", "iso": "IN"                                      , "display": "India"},
+    {"flag": "ID.png", "iso": "ID"                                  , "display": "Indonesia"},
+    {"flag": "IR.png", "iso": "IR"                                       , "display": "Iran"},
+    {"flag": "IQ.png", "iso": "IQ"                                       , "display": "Iraq"},
+    {"flag": "IE.png", "iso": "IE"                                    , "display": "Ireland"},
+    {"flag": "IM.png", "iso": "IM"                                , "display": "Isle of Man"},
+    {"flag": "IL.png", "iso": "IL"                                     , "display": "Israel"},
+    {"flag": "IT.png", "iso": "IT"                                      , "display": "Italy"},
+    {"flag": "CI.png", "iso": "CI"                                , "display": "Ivory Coast"},
+    {"flag": "JM.png", "iso": "JM"                                    , "display": "Jamaica"},
+    {"flag": "JP.png", "iso": "JP"                                      , "display": "Japan"},
+    {"flag": "JE.png", "iso": "JE"                                     , "display": "Jersey"},
+    {"flag": "JO.png", "iso": "JO"                                     , "display": "Jordan"},
+    {"flag": "KZ.png", "iso": "KZ"                                 , "display": "Kazakhstan"},
+    {"flag": "KE.png", "iso": "KE"                                      , "display": "Kenya"},
+    {"flag": "KI.png", "iso": "KI"                                   , "display": "Kiribati"},
+    {"flag": "KW.png", "iso": "KW"                                     , "display": "Kuwait"},
+    {"flag": "KG.png", "iso": "KG"                                 , "display": "Kyrgyzstan"},
+    {"flag": "LA.png", "iso": "LA"                                       , "display": "Laos"},
+    {"flag": "LV.png", "iso": "LV"                                     , "display": "Latvia"},
+    {"flag": "LB.png", "iso": "LB"                                    , "display": "Lebanon"},
+    {"flag": "LS.png", "iso": "LS"                                    , "display": "Lesotho"},
+    {"flag": "LR.png", "iso": "LR"                                    , "display": "Liberia"},
+    {"flag": "LY.png", "iso": "LY"                                      , "display": "Libya"},
+    {"flag": "LI.png", "iso": "LI"                              , "display": "Liechtenstein"},
+    {"flag": "LT.png", "iso": "LT"                                  , "display": "Lithuania"},
+    {"flag": "LU.png", "iso": "LU"                                 , "display": "Luxembourg"},
+    {"flag": "MO.png", "iso": "MO"                        , "display": "Macao S.A.R., China"},
+    {"flag": "MK.png", "iso": "MK"                                  , "display": "Macedonia"},
+    {"flag": "MG.png", "iso": "MG"                                 , "display": "Madagascar"},
+    {"flag": "MW.png", "iso": "MW"                                     , "display": "Malawi"},
+    {"flag": "MY.png", "iso": "MY"                                   , "display": "Malaysia"},
+    {"flag": "MV.png", "iso": "MV"                                   , "display": "Maldives"},
+    {"flag": "ML.png", "iso": "ML"                                       , "display": "Mali"},
+    {"flag": "MT.png", "iso": "MT"                                      , "display": "Malta"},
+    {"flag": "MH.png", "iso": "MH"                           , "display": "Marshall Islands"},
+    {"flag": "MQ.png", "iso": "MQ"                                 , "display": "Martinique"},
+    {"flag": "MR.png", "iso": "MR"                                 , "display": "Mauritania"},
+    {"flag": "MU.png", "iso": "MU"                                  , "display": "Mauritius"},
+    {"flag": "YT.png", "iso": "YT"                                    , "display": "Mayotte"},
+    {"flag": "MX.png", "iso": "MX"                                     , "display": "Mexico"},
+    {"flag": "FM.png", "iso": "FM"                                 , "display": "Micronesia"},
+    {"flag": "MD.png", "iso": "MD"                                    , "display": "Moldova"},
+    {"flag": "MC.png", "iso": "MC"                                     , "display": "Monaco"},
+    {"flag": "MN.png", "iso": "MN"                                   , "display": "Mongolia"},
+    {"flag": "ME.png", "iso": "ME"                                 , "display": "Montenegro"},
+    {"flag": "MS.png", "iso": "MS"                                 , "display": "Montserrat"},
+    {"flag": "MA.png", "iso": "MA"                                    , "display": "Morocco"},
+    {"flag": "MZ.png", "iso": "MZ"                                 , "display": "Mozambique"},
+    {"flag": "MM.png", "iso": "MM"                                    , "display": "Myanmar"},
+    {"flag": "NA.png", "iso": "NA"                                    , "display": "Namibia"},
+    {"flag": "NR.png", "iso": "NR"                                      , "display": "Nauru"},
+    {"flag": "NP.png", "iso": "NP"                                      , "display": "Nepal"},
+    {"flag": "NL.png", "iso": "NL"                                , "display": "Netherlands"},
+    {"flag": "AN.png", "iso": "AN"                       , "display": "Netherlands Antilles"},
+    {"flag": "NC.png", "iso": "NC"                              , "display": "New Caledonia"},
+    {"flag": "NZ.png", "iso": "NZ"                                , "display": "New Zealand"},
+    {"flag": "NI.png", "iso": "NI"                                  , "display": "Nicaragua"},
+    {"flag": "NE.png", "iso": "NE"                                      , "display": "Niger"},
+    {"flag": "NG.png", "iso": "NG"                                    , "display": "Nigeria"},
+    {"flag": "NU.png", "iso": "NU"                                       , "display": "Niue"},
+    {"flag": "NF.png", "iso": "NF"                             , "display": "Norfolk Island"},
+    {"flag": "MP.png", "iso": "MP"                   , "display": "Northern Mariana Islands"},
+    {"flag": "KP.png", "iso": "KP"                                , "display": "North Korea"},
+    {"flag": "NO.png", "iso": "NO"                                     , "display": "Norway"},
+    {"flag": "OM.png", "iso": "OM"                                       , "display": "Oman"},
+    {"flag": "PK.png", "iso": "PK"                                   , "display": "Pakistan"},
+    {"flag": "PW.png", "iso": "PW"                                      , "display": "Palau"},
+    {"flag": "PS.png", "iso": "PS"                      , "display": "Palestinian Territory"},
+    {"flag": "PA.png", "iso": "PA"                                     , "display": "Panama"},
+    {"flag": "PG.png", "iso": "PG"                           , "display": "Papua New Guinea"},
+    {"flag": "PY.png", "iso": "PY"                                   , "display": "Paraguay"},
+    {"flag": "PE.png", "iso": "PE"                                       , "display": "Peru"},
+    {"flag": "PH.png", "iso": "PH"                                , "display": "Philippines"},
+    {"flag": "PN.png", "iso": "PN"                                   , "display": "Pitcairn"},
+    {"flag": "PL.png", "iso": "PL"                                     , "display": "Poland"},
+    {"flag": "PT.png", "iso": "PT"                                   , "display": "Portugal"},
+    {"flag": "PR.png", "iso": "PR"                                , "display": "Puerto Rico"},
+    {"flag": "QA.png", "iso": "QA"                                      , "display": "Qatar"},
+    {"flag": "RE.png", "iso": "RE"                                    , "display": "Reunion"},
+    {"flag": "RO.png", "iso": "RO"                                    , "display": "Romania"},
+    {"flag": "RU.png", "iso": "RU"                                     , "display": "Russia"},
+    {"flag": "RW.png", "iso": "RW"                                     , "display": "Rwanda"},
+    {"flag": "BL.png", "iso": "BL"                           , "display": "Saint Barthélemy"},
+    {"flag": "SH.png", "iso": "SH"                               , "display": "Saint Helena"},
+    {"flag": "KN.png", "iso": "KN"                      , "display": "Saint Kitts and Nevis"},
+    {"flag": "LC.png", "iso": "LC"                                , "display": "Saint Lucia"},
+    {"flag": "MF.png", "iso": "MF"                 , "display": "Saint Martin (French part)"},
+    {"flag": "PM.png", "iso": "PM"                  , "display": "Saint Pierre and Miquelon"},
+    {"flag": "VC.png", "iso": "VC"           , "display": "Saint Vincent and the Grenadines"},
+    {"flag": "WS.png", "iso": "WS"                                      , "display": "Samoa"},
+    {"flag": "SM.png", "iso": "SM"                                 , "display": "San Marino"},
+    {"flag": "ST.png", "iso": "ST"                      , "display": "Sao Tome and Principe"},
+    {"flag": "SA.png", "iso": "SA"                               , "display": "Saudi Arabia"},
+    {"flag": "SN.png", "iso": "SN"                                    , "display": "Senegal"},
+    {"flag": "RS.png", "iso": "RS"                                     , "display": "Serbia"},
+    {"flag": "SC.png", "iso": "SC"                                 , "display": "Seychelles"},
+    {"flag": "SL.png", "iso": "SL"                               , "display": "Sierra Leone"},
+    {"flag": "SG.png", "iso": "SG"                                  , "display": "Singapore"},
+    {"flag": "SX.png", "iso": "SX"                  , "display": "Sint Maarten (Dutch part)"},
+    {"flag": "SK.png", "iso": "SK"                                   , "display": "Slovakia"},
+    {"flag": "SI.png", "iso": "SI"                                   , "display": "Slovenia"},
+    {"flag": "SB.png", "iso": "SB"                            , "display": "Solomon Islands"},
+    {"flag": "SO.png", "iso": "SO"                                    , "display": "Somalia"},
+    {"flag": "ZA.png", "iso": "ZA"                               , "display": "South Africa"},
+    {"flag": "GS.png", "iso": "GS", "display": "South Georgia and the South Sandwich Islands"},
+    {"flag": "KR.png", "iso": "KR"                                , "display": "South Korea"},
+    {"flag": "SS.png", "iso": "SS"                                , "display": "South Sudan"},
+    {"flag": "ES.png", "iso": "ES"                                      , "display": "Spain"},
+    {"flag": "LK.png", "iso": "LK"                                  , "display": "Sri Lanka"},
+    {"flag": "SD.png", "iso": "SD"                                      , "display": "Sudan"},
+    {"flag": "SR.png", "iso": "SR"                                   , "display": "Suriname"},
+    {"flag": "SJ.png", "iso": "SJ"                     , "display": "Svalbard and Jan Mayen"},
+    {"flag": "SZ.png", "iso": "SZ"                                  , "display": "Swaziland"},
+    {"flag": "SE.png", "iso": "SE"                                     , "display": "Sweden"},
+    {"flag": "CH.png", "iso": "CH"                                , "display": "Switzerland"},
+    {"flag": "SY.png", "iso": "SY"                                      , "display": "Syria"},
+    {"flag": "TW.png", "iso": "TW"                                     , "display": "Taiwan"},
+    {"flag": "TJ.png", "iso": "TJ"                                 , "display": "Tajikistan"},
+    {"flag": "TZ.png", "iso": "TZ"                                   , "display": "Tanzania"},
+    {"flag": "TH.png", "iso": "TH"                                   , "display": "Thailand"},
+    {"flag": "TL.png", "iso": "TL"                                , "display": "Timor-Leste"},
+    {"flag": "TG.png", "iso": "TG"                                       , "display": "Togo"},
+    {"flag": "TK.png", "iso": "TK"                                    , "display": "Tokelau"},
+    {"flag": "TO.png", "iso": "TO"                                      , "display": "Tonga"},
+    {"flag": "TT.png", "iso": "TT"                        , "display": "Trinidad and Tobago"},
+    {"flag": "TN.png", "iso": "TN"                                    , "display": "Tunisia"},
+    {"flag": "TR.png", "iso": "TR"                                     , "display": "Turkey"},
+    {"flag": "TM.png", "iso": "TM"                               , "display": "Turkmenistan"},
+    {"flag": "TC.png", "iso": "TC"                   , "display": "Turks and Caicos Islands"},
+    {"flag": "TV.png", "iso": "TV"                                     , "display": "Tuvalu"},
+    {"flag": "VI.png", "iso": "VI"                        , "display": "U.S. Virgin Islands"},
+    {"flag": "UG.png", "iso": "UG"                                     , "display": "Uganda"},
+    {"flag": "UA.png", "iso": "UA"                                    , "display": "Ukraine"},
+    {"flag": "AE.png", "iso": "AE"                       , "display": "United Arab Emirates"},
+    {"flag": "GB.png", "iso": "GB"                             , "display": "United Kingdom"},
+    {"flag": "US.png", "iso": "US"                              , "display": "United States"},
+    {"flag": "UM.png", "iso": "UM"       , "display": "United States Minor Outlying Islands"},
+    {"flag": "UY.png", "iso": "UY"                                    , "display": "Uruguay"},
+    {"flag": "UZ.png", "iso": "UZn"                                 ,"display": "Uzbekistan"},
+    {"flag": "VU.png", "iso": "VU"                                    , "display": "Vanuatu"},
+    {"flag": "VA.png", "iso": "VA"                                    , "display": "Vatican"},
+    {"flag": "VE.png", "iso": "VE"                                  , "display": "Venezuela"},
+    {"flag": "VN.png", "iso": "VN"                                    , "display": "Vietnam"},
+    {"flag": "WF.png", "iso": "WF"                          , "display": "Wallis and Futuna"},
+    {"flag": "EH.png", "iso": "EH"                             , "display": "Western Sahara"},
+    {"flag": "YE.png", "iso": "YE"                                      , "display": "Yemen"},
+    {"flag": "ZM.png", "iso": "ZM"                                     , "display": "Zambia"},
+    {"flag": "ZW.png", "isoiso": "ZW"                                 , "display": "Zimbabwe"}
+  ];
+  function init_checkout_billing(){
+
+
+    /********Country**************/
+
+    $("#billibg-country").kendoDropDownList({
+        //cascadeFrom: "parent",
+        dataTextField: "display",
+        dataValueField: "iso",
+        dataSource: data_Rates
+    });
+
+  }
+
+</script>
+
+<style>
+
+
+
+ /*.checkout .k-animation-container{
+   background: #fff;
+ }*/
+
+
+
+
+</style>
